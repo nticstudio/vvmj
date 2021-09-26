@@ -1,0 +1,17 @@
+App\Entity\Patient:
+    patient_{1..30}:
+        email: <email()>
+        firstname: <firstName()>
+        lastname: <lastName()>
+        age: <numberBetween(16,90)>
+        situationFam: <randomElement(['Marié','Célibataire','Concubinage','Divorcé'])>
+        phone: <phoneNumber()>
+        paysnai:  <country()>
+        nbenfant: <numberBetween(0,10)>
+        profession: <jobTitle()>
+        tabac: <boolean()>
+        alcool: <boolean()>
+        sport: <text(255)>
+        medication: <text(255)>
+        protese: <text(255)>
+        createdBy: '@user_*'

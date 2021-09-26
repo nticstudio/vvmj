@@ -1,0 +1,4 @@
+Célibataire
+Marié
+Divorcé
+Concubinage
