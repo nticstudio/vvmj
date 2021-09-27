@@ -101,10 +101,20 @@ class User implements UserInterface, JWTUserInterface
      */
     protected $updatedAt;
 
+    /**
+     * @ORM\OneToMany(targetEntity=Visite::class, mappedBy="created_by")
+     */
+    private $visites;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Visite::class, mappedBy="chaperon")
+     */
+    private $visitesChaperon;
+
     public function __construct()
     {
-        
-        
+        $this->visites = new ArrayCollection();
+        $this->visitesChaperon = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -240,4 +250,68 @@ class User implements UserInterface, JWTUserInterface
        return $user;
 
     }
-}
+
+    /**
+     * @return Collection|Visite[]
+     */
+    public function getVisites(): Collection
+    {
+        return $this->visites;
+    }
+
+    public function addVisite(Visite $visite): self
+    {
+        if (!$this->visites->contains($visite)) {
+            $this->visites[] = $visite;
+            $visite->setCreatedBy($this);
+        }
+
+        return $this;
+    }
+
+    public function removeVisite(Visite $visite): self
+    {
+        if ($this->visites->removeElement($visite)) {
+            // set the owning side to null (unless already changed)
+            if ($visite->getCreatedBy() === $this) {
+                $visite->setCreatedBy(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Visite[]
+     */
+    public function getVisitesChaperon(): Collection
+    {
+        return $this->visitesChaperon;
+    }
+
+    public function addVisitesChaperon(Visite $visitesChaperon): self
+    {
+        if (!$this->visitesChaperon->contains($visitesChaperon)) {
+            $this->visitesChaperon[] = $visitesChaperon;
+            $visitesChaperon->setChaperon($this);
+        }
+
+        return $this;
+    }
+
+    public function removeVisitesChaperon(Visite $visitesChaperon): self
+    {
+        if ($this->visitesChaperon->removeElement($visitesChaperon)) {
+            // set the owning side to null (unless already changed)
+            if ($visitesChaperon->getChaperon() === $this) {
+                $visitesChaperon->setChaperon(null);
+            }
+        }
+
+        return $this;
+    }
+
+   public function  getUserIdentifier() {
+       return "email";
+   }
+} 
