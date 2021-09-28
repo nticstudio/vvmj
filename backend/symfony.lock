@@ -332,6 +332,9 @@
     "symfony/http-kernel": {
         "version": "v5.2.7"
     },
+    "symfony/ldap": {
+        "version": "v5.3.8"
+    },
     "symfony/maker-bundle": {
         "version": "1.0",
         "recipe": {
@@ -340,6 +343,9 @@
             "version": "1.0",
             "ref": "fadbfe33303a76e25cb63401050439aa9b1a9c7f"
         }
+    },
+    "symfony/options-resolver": {
+        "version": "v5.3.7"
     },
     "symfony/orm-pack": {
         "version": "v2.1.0"
