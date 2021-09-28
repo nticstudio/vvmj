@@ -3,6 +3,7 @@
 namespace App\Command;
 
 use App\Entity\Etablissement;
+use App\Entity\Grade;
 use App\Entity\Groupement;
 use App\Entity\Metier;
 use App\Entity\Unite;
@@ -34,6 +35,7 @@ class ImportCommand extends Command
         'eg' => 'stethos_eg.csv',
         'uf' => 'stethos_uf.csv',
         'metier' => 'hraccess_metiers.csv',
+        'grade' => 'hraccess_grades.csv',
     );
 
 
@@ -54,6 +56,7 @@ class ImportCommand extends Command
             ->addOption('eg', null, InputOption::VALUE_NONE, 'Import des etablissements')
             ->addOption('uf', null, InputOption::VALUE_NONE, 'Import des unites')
             ->addOption('metier', null, InputOption::VALUE_NONE, 'Import des metiers')
+            ->addOption('grade', null, InputOption::VALUE_NONE, 'Import des grades')
             ->addOption('all', null, InputOption::VALUE_NONE, 'Import des fichiers');
     }
 
@@ -79,6 +82,11 @@ class ImportCommand extends Command
         if ($input->getOption('metier')  || $input->getOption('all')) {
             $io->note('Import des metiers');
             $this->metier();
+        }
+
+        if ($input->getOption('grade')  || $input->getOption('all')) {
+            $io->note('Import des grades');
+            $this->grade();
         }
 
         $io->success('You have a new command! Now make it your own! Pass --help to see your options.');
@@ -195,6 +203,27 @@ class ImportCommand extends Command
 
         foreach ($rows as $row) {
             $metier = new Metier($row[0], $row[1], 1);         
+            $this->entityManager->persist($metier);
+            $this->entityManager->flush();
+        }
+    }
+
+
+
+    /**
+     * Import des grades à partir d'un fichier CSV
+     * @param string|null @filename  Nom du fichier à importer
+     */
+    private function grade(string $filename = null)
+    {
+
+        if (!$filename)
+            $filename = $this->default_filenames['grade'];
+
+        $rows = $this->parseCSV($filename, true);
+
+        foreach ($rows as $row) {
+            $metier = new Grade($row[0], utf8_encode($row[1]), 1);         
             $this->entityManager->persist($metier);
             $this->entityManager->flush();
         }
