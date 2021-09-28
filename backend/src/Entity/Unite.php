@@ -32,7 +32,7 @@ class Unite
     private $libelle;
 
     /**
-     * @ORM\ManyToOne(targetEntity=etablissement::class, inversedBy="unites")
+     * @ORM\ManyToOne(targetEntity=Etablissement::class, inversedBy="unites")
      * @ORM\JoinColumn(nullable=false)
      */
     private $eg;

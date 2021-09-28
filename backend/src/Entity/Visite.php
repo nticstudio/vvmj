@@ -26,7 +26,7 @@ class Visite
     private $id;
 
     /**
-     * @ORM\ManyToOne(targetEntity=unite::class, inversedBy="visites")
+     * @ORM\ManyToOne(targetEntity=Unite::class, inversedBy="visites")
      * @ORM\JoinColumn(nullable=false)
      */
     private $uf;

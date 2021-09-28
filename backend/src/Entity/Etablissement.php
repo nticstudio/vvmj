@@ -32,7 +32,7 @@ class Etablissement
     private $libelle;
 
     /**
-     * @ORM\ManyToOne(targetEntity=groupement::class, inversedBy="etablissements")
+     * @ORM\ManyToOne(targetEntity=Groupement::class, inversedBy="etablissements")
      * @ORM\JoinColumn(nullable=false)
      */
     private $gh;
