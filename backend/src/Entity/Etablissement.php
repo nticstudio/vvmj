@@ -47,9 +47,19 @@ class Etablissement
      */
     private $unites;
 
-    public function __construct()
+    public function __construct(string $code = null, string $libelle = null)
     {
         $this->unites = new ArrayCollection();
+
+        if($code) {            
+            $this->setCode($code);
+        }
+
+        if($libelle) {
+            $this->setLibelle($libelle);
+        }
+
+        $this->status = true;
     }
 
     public function getId(): ?int

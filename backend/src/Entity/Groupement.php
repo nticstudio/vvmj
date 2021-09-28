@@ -41,9 +41,18 @@ class Groupement
      */
     private $etablissements;
 
-    public function __construct()
+       public function __construct(string $code = null, string $libelle = null)
     {
         $this->etablissements = new ArrayCollection();
+        if($code) {            
+            $this->setCode($code);
+        }
+
+        if($libelle) {
+            $this->setLibelle($libelle);
+        }
+
+        $this->status = true;
     }
 
     public function getId(): ?int

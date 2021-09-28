@@ -52,10 +52,20 @@ class Unite
      */
     private $inscriptions;
 
-    public function __construct()
+    public function __construct(string $code = null, string $libelle = null)
     {
         $this->visites = new ArrayCollection();
         $this->inscriptions = new ArrayCollection();
+
+        if($code) {            
+            $this->setCode($code);
+        }
+
+        if($libelle) {
+            $this->setLibelle($libelle);
+        }
+
+        $this->status = true;
     }
 
     public function getId(): ?int

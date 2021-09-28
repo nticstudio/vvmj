@@ -52,12 +52,12 @@ class Visite
     private $hfin;
 
     /**
-     * @ORM\ManyToOne(targetEntity=user::class, inversedBy="visites")
+     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="visites")
      */
     private $created_by;
 
     /**
-     * @ORM\ManyToOne(targetEntity=user::class, inversedBy="visitesChaperon")
+     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="visitesChaperon")
      */
     private $chaperon;
 

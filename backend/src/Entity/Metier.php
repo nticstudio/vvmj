@@ -34,6 +34,21 @@ class Metier
      */
     private $status;
 
+
+    public function __construct(string $code = null, string $libelle = null)
+    {
+        
+        if($code) {            
+            $this->setCode($code);
+        }
+
+        if($libelle) {
+            $this->setLibelle($libelle);
+        }
+
+        $this->status = true;
+    }
+
     public function getId(): ?int
     {
         return $this->id;
