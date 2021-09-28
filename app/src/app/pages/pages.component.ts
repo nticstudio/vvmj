@@ -1,13 +1,22 @@
 import { Component, OnInit } from '@angular/core';
+import { NbMenuItem } from '@nebular/theme';
 import { Etablissement, Grade, Groupement, Metier } from '../@core/models/referentiel';
 import { ApiService } from '../@core/services/api.service'
 
 @Component({
-  selector: 'app-pages',
-  templateUrl: './pages.component.html',
-  styleUrls: ['./pages.component.css']
+  selector: 'ngx-pages',
+  styleUrls: ['pages.component.scss'],
+  template: `
+    <ngx-one-column-layout>     
+      <nb-menu [items]="menu"></nb-menu> 
+      <router-outlet></router-outlet>
+    </ngx-one-column-layout>
+  `,
 })
 export class PagesComponent implements OnInit {
+
+  menu: NbMenuItem[] = [];
+   
 
   private api: ApiService;
   groupements: Groupement[] = [];
@@ -17,13 +26,19 @@ export class PagesComponent implements OnInit {
 
   constructor(api: ApiService) {
     this.api = api;
+    this.menu = [ {
+      title: 'Accueil',
+      icon: 'home-outline',
+      link: '/',
+      home: true
+    }];
   }
 
   ngOnInit() {
-    this.loadGroupements();
+   /* this.loadGroupements();
     this.loadEtablissements();
     this.loadMetiers();
-    this.loadGrades();
+    this.loadGrades();*/
   }
 
   async loadGroupements(): Promise<void> {
