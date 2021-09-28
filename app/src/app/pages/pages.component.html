@@ -1,1 +1,53 @@
 <p>pages works!</p>
+
+
+<ng-template [ngIf]="groupements.length">
+    <h2>
+       {{ groupements.length }} Groupements !
+    </h2>
+
+    <ul>
+        <li *ngFor="let item of groupements">
+            {{ item.code }} {{ item.libelle }} 
+        </li>
+    </ul>
+</ng-template>
+
+
+<ng-template [ngIf]="etablissements.length">
+    <h2>
+       {{ etablissements.length }} Etablissements !
+    </h2>
+
+    <ul>
+        <li *ngFor="let item of etablissements">
+            {{ item.code }} {{ item.libelle }} 
+        </li>
+    </ul>
+</ng-template>
+
+
+<ng-template [ngIf]="metiers.length">
+    <h2>
+       {{ metiers.length }} Metiers !
+    </h2>
+
+    <ul>
+        <li *ngFor="let item of metiers">
+            {{ item.code }} {{ item.libelle }} 
+        </li>
+    </ul>
+</ng-template>
+
+
+<ng-template [ngIf]="grades.length">
+    <h2>
+       {{ grades.length }} Grades !
+    </h2>
+
+    <ul>
+        <li *ngFor="let item of grades">
+            {{ item.code }} {{ item.libelle }} 
+        </li>
+    </ul>
+</ng-template>
