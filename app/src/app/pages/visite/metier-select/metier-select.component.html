@@ -1,0 +1,26 @@
+<div class="form-group row">
+    <label for="metierselect" class="label col-sm-3 col-form-label">{{ label }}</label>
+
+      <div class="col-sm-9"> 
+      <input  
+      nbInput   
+      name="metierselect"
+      [(ngModel)]="metierselect"
+      (ngModelChange)="onMetierSelectChange($event)"
+      type="text"                 
+      placeholder="tapez un métier"
+      [nbAutocomplete]="autoMetierSelect" 
+      />
+      
+
+    <nb-autocomplete #autoMetierSelect (selectedChange)="metierEvent($event)"  [activeFirst]="true">
+
+      <nb-option *ngFor="let option of filtered | async" [value]="option.libelle">
+        {{ option.libelle }}
+      </nb-option>
+
+    </nb-autocomplete>
+</div>
+
+ 
+  </div>

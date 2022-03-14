@@ -1,0 +1,26 @@
+<div class="form-group row">
+    <label for="uniteselect" class="label col-sm-3 col-form-label">Unité fonctionnelle</label>
+
+      <div class="col-sm-9"> 
+      <input  
+      nbInput   
+      name="uniteselect"
+      [(ngModel)]="uniteselect"
+      (ngModelChange)="onUniteSelectChange($event)"
+      type="text"                 
+      placeholder="tapez une uf"
+      [nbAutocomplete]="autoUniteSelect" 
+      />
+      
+
+    <nb-autocomplete #autoUniteSelect (selectedChange)="uniteEvent($event)"  [activeFirst]="true">
+
+      <nb-option *ngFor="let option of filtered | async" [value]="option.libelle">
+        {{ option.libelle }}
+      </nb-option>
+
+    </nb-autocomplete>
+</div>
+
+ 
+  </div>

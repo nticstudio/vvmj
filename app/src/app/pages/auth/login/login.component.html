@@ -1,0 +1,46 @@
+<div class="row align-items-center justify-content-center">
+  
+  <div class="col-5">
+    <nb-card class="inline-form-card">
+      <nb-card-header>
+        <p class="sub-title">Bonjour ! Connectez vous avec votre compte HCL</p>
+      </nb-card-header>
+      <nb-card-body>
+
+
+
+        <form (ngSubmit)="login()" #form="ngForm" aria-labelledby="title">
+
+          <div class="form-control-group">
+            <label class="label" for="input-email">Email :</label>
+            <input nbInput fullWidth name="username" id="input-email" pattern=".+@.+\..+" placeholder="Email address"
+              fieldSize="large" autofocus>
+
+          </div>
+
+          <div class="form-control-group" >
+            <span class="label-with-link">
+              <label class="label" for="input-password">Mot de passe:</label>
+            </span>
+            <input nbInput fullWidth name="password" type="password" id="input-password" placeholder="Password"
+              fieldSize="large">
+          </div>
+
+          <!-- <div class="form-control-group accept-group">
+    <nb-checkbox name="rememberMe" [(ngModel)]="user.rememberMe" *ngIf="rememberMe">Se souvenir de moi</nb-checkbox>
+  </div> -->
+
+          <button nbButton fullWidth status="primary" size="large" >
+            Se connecter
+          </button>
+        </form>
+
+
+
+      </nb-card-body>
+
+
+    </nb-card>
+  </div>
+
+</div>

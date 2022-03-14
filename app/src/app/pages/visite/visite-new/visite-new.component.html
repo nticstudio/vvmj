@@ -1,0 +1,160 @@
+<p>visite-new works!</p>
+
+<nb-card [nbSpinner]="loading" nbSpinnerStatus="danger">
+    <nb-card-body>
+      <form>
+        <div class="row">
+            <div class="col-6"><label>Responsable de structure accueillante</label><app-current-user></app-current-user></div>
+            <div class="col-6"><label>Chaperon</label><app-current-user></app-current-user></div>
+        </div>
+        <div class="row">
+          <div class="col-md-12">
+            <!-- <p>{{ visite | json }}</p> -->
+            <div class="form-group row">
+              <label class="col-sm-3 label">Présentation du service</label>
+              <div class="col-sm-9">
+                <textarea nbInput name="presentation" fullWidth #presentation cols="30" rows="10"
+                  [ngModel]="visite.presentation"></textarea>
+              </div>
+            </div>
+
+            <div class="form-group row">
+                <label class="col-sm-3 label">Consignes</label>
+                <div class="col-sm-9">
+                    <textarea nbInput name="consigne" fullWidth #consigne cols="30" rows="5"
+                    [ngModel]="visite.consigne"></textarea>
+                </div>
+                </div>
+  
+            <div class="form-group row">
+              <label for="gh" class="label col-sm-3 col-form-label">Groupement</label>
+              <div class="col-sm-5">
+                <input nbInput name="gh" fullWidth value="{{visite?.gh?.code}} - {{visite?.gh?.libelle}}">
+              </div>
+            </div>
+  
+            <div class="form-group row">
+              <label for="eg" class="label col-sm-3 col-form-label">Etablissement</label>
+              <div class="col-sm-5">
+                <input nbInput name="eg" fullWidth value="{{visite?.eg?.code}} - {{visite?.eg?.libelle}}">
+              </div>
+            </div>
+  
+            <div class="form-group row">
+              <label for="uf" class="label col-sm-3 col-form-label">Unité fonctionnelle</label>
+              <div class="col-sm-5">
+                <input nbInput name="uf" fullWidth value="{{visite?.uf?.code}} - {{visite?.uf?.libelle}}">
+              </div>
+            </div>
+  
+  
+            <div class="form-group row">
+              <label for="metier" class="label col-sm-3 col-form-label">Métier proposé</label>
+              <div class="col-sm-5">
+                <input nbInput name="metier" fullWidth value="{{visite?.metier?.code}} - {{visite?.metier?.libelle}}">
+              </div>
+            </div>
+
+            
+                        <div class="form-group row">
+                        <label for="Places" class="label col-sm-3 col-form-label">Nombre de places proposées</label>
+                        <div class="col-sm-9">
+                            <input type="number" nbInput name="places" #places [ngModel]="visite?.places">
+                        </div>
+                        </div>
+
+
+
+                
+               
+
+                      
+                
+                        <div class="form-group row">
+                            <label for="date" class="label col-sm-3 col-form-label">Date</label>
+                            <div class="col-sm-9">
+                            <input nbInput #date name="date" [nbDatepicker]="ngdate" [(ngModel)]="visite.date">
+                            <nb-datepicker #ngdate format="dd/MM/yyyy"></nb-datepicker>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                        <label for="date" class="label col-sm-3 col-form-label">Créneau horaire</label>
+                        <div class="col-sm-9">
+
+                            <input nbInput #hdebut name="hdebut" [nbDatepicker]="ngdateHD" [ngModel]="visite?.hdebut" placeholder="heure de début">
+                            <nb-datepicker #ngdateHD format="H:mm"></nb-datepicker>
+                           
+                        </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="date" class="label col-sm-3 col-form-label"></label>
+                            <div class="col-sm-9">
+    
+                              <input nbInput #hfin name="hfin" [nbDatepicker]="ngdateHF"
+                                [ngModel]="visite?.hfin"  placeholder="heure de fin">
+                                <nb-datepicker #ngdateHF format="HH:mm"></nb-datepicker>
+                            </div>
+                            </div>
+                    
+            <!-- 
+    <div class="form-group row">
+      <label for="hdebut" class="label col-sm-3 col-form-label">Hfin</label>
+      <div class="col-sm-9">
+        <input type="text" nbInput #Hfin name="Hfin" [ngModel]="visite?.hfin" >
+      </div>
+    </div>
+    
+    
+    
+    
+    <div class="form-group row">
+      <label for="hdebut" class="label col-sm-3 col-form-label">Chaperon</label>
+      <div class="col-sm-9">
+        {{ visite?.chaperon?.firstname}} {{ visite?.chaperon?.lastname}} {{ visite?.chaperon?.email}}
+      </div>
+    </div> -->
+  
+            <!-- {{ visite?.gh | json }} -->
+            <!-- <app-groupement-select label="Groupement" [initValue]="groupementCode"></app-groupement-select>
+              <app-etablissement-select [parentCode]="groupementCode"  ></app-etablissement-select>
+              <app-unite-select [parentCode]="etablissementCode"  ></app-unite-select>
+              <app-metier-select label="Métiers" ></app-metier-select>  -->
+            <!-- <div class="form-group row">
+                <label for="inputEmail1" class="label col-sm-3 col-form-label">Email</label>
+                <div class="col-sm-9">
+                  <input type="email" nbInput fullWidth id="inputEmail1" placeholder="Email">
+                </div>
+              </div>
+              <div class="form-group row">
+                <label for="inputPassword2" class="label col-sm-3 col-form-label">Password</label>
+                <div class="col-sm-9">
+                  <input type="password" nbInput fullWidth id="inputPassword2" placeholder="Password">
+                </div>
+              </div>
+              <div class="form-group row">
+                <label class="col-sm-3 label">Radios</label>
+                <div class="col-sm-9">
+                  <nb-radio-group>
+                    <nb-radio>Option 1</nb-radio>
+                    <nb-radio>Option 2</nb-radio>
+                    <nb-radio disabled>Disabled Option</nb-radio>
+                  </nb-radio-group>
+                </div>
+              </div>
+              <div class="form-group row">
+                <div class="offset-sm-3 col-sm-9">
+                  <button type="submit" nbButton status="primary">Sign in</button>
+                </div>
+              </div>
+            -->
+  
+          </div>
+        </div>
+  
+      </form>
+    </nb-card-body>
+  
+  </nb-card>
+  

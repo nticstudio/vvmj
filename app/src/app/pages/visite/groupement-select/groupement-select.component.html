@@ -1,0 +1,20 @@
+<div class="form-group row">
+  <label for="groupementselect" class="label col-sm-3 col-form-label">Groupement</label>
+
+  <div class="col-sm-9">
+    <input nbInput name="groupementselect" [(ngModel)]="groupementselect"
+      (ngModelChange)="onGroupementChange($event)" type="text" placeholder="tapez un groupement"
+      [nbAutocomplete]="autoGroupement" />
+
+
+    <nb-autocomplete #autoGroupement (selectedChange)="groupementEvent($event)">
+
+      <nb-option *ngFor="let option of filtered | async" [value]="option.libelle">
+        {{ option.libelle }}
+      </nb-option>
+
+    </nb-autocomplete>
+  </div>
+
+
+</div>

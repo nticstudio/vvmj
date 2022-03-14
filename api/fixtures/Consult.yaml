@@ -1,0 +1,17 @@
+App\Entity\Consult:
+    consult_{1..60}:
+        type: <randomElement([Bilan énergétique + soin, Suivi de soin, Massage bien être])>
+        symptomePrinc: <text(255)>
+        symptomePrincHisto: <text(255)>
+        symptomeAssocie: <text(255)>
+        antecedent: <text(255)>
+        allureRessentiEnergie: <text(255)>
+        teintVisage: <randomElement([Normal, Profond, Superficiel])>
+        zoneColoreVisage: <text(255)>
+        shen: <randomElement([Bon, Insuffisance, Anormal])>
+        langue: <randomElement([Gonflée, Large, Etroite, Eédentée, Fissure centrale, Fissure latérale, Rrouge, Pointe rouge, bleue, enduit sec, enduit gras, enduit mince ,enduit blanc, enduit jaune, enduit gris , enduit deskouamé, pas d'enduit, veine sublinguale bleue])>
+        pouls: <randomElement([superficiel, tendu, en corde, lent, rapide, faible])>
+        morphologie: <randomElement([type bois, type terre, type feu, type metal, type eau])>
+        palpationAuscultationOlfaction: <text(255)>
+        transitIntestinal: <text(255)>
+        patient:  '@patient_*'
