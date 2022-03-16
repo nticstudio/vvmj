@@ -11,6 +11,7 @@ services:
         autowire: true      # Automatically injects dependencies in your services.
         autoconfigure: true # Automatically registers your services as commands, event subscribers, etc.
 
+
     # makes classes in src/ available to be used as services
     # this creates a service per class whose id is the fully-qualified class name
     App\:
@@ -27,5 +28,27 @@ services:
         resource: '../src/Controller/'
         tags: ['controller.service_arguments']
 
+
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones
+
+    # LDAP provider
+    Symfony\Component\Ldap\Ldap:
+        arguments: ['@Symfony\Component\Ldap\Adapter\ExtLdap\Adapter']
+        tags:
+            - ldap
+    Symfony\Component\Ldap\Adapter\ExtLdap\Adapter:
+        arguments:
+            -   host: '%env(LDAP_HOST)%'
+                port: 389
+                #encryption: tls
+                options:
+                    protocol_version: 3
+                    referrals: false
+
+    App\Service\ActiveDirectory:
+        bind:
+            $ldapServiceDn: '%env(BASE_DN_LDAP_USER_PROVIDER)%'
+            $ldapServiceUser: '%env(SEARCH_DN_LDAP_USER_PROVIDER)%'
+            $ldapServicePassword: '%env(SEARCH_PASSWORD_LDAP_USER_PROVIDER)%'   
+

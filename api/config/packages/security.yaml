@@ -2,7 +2,7 @@ security:
     encoders:
         App\Entity\User:
             algorithm: auto
-
+    enable_authenticator_manager: true
     providers:
         db_provider:
             entity:
@@ -15,7 +15,20 @@ security:
                 property: email
         jwt: 
             lexik_jwt:
-                class: App\Entity\User       
+                class: App\Entity\User 
+        ldap_server:
+            ldap:
+                service: Symfony\Component\Ldap\Ldap
+                #base_dn: dc=example,dc=com
+                #search_dn: "cn=read-only-admin,dc=example,dc=com"
+                #search_password: password
+                #uid_key: uid
+                base_dn: '%env(BASE_DN_LDAP_USER_PROVIDER)%'
+                search_dn: '%env(SEARCH_DN_LDAP_USER_PROVIDER)%'
+                search_password: '%env(SEARCH_PASSWORD_LDAP_USER_PROVIDER)%'
+                uid_key: '%env(LDAP_UID_KEY)%'
+                default_roles: ROLE_USER                
+                extra_fields: ['mail']                      
     firewalls:
         dev:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
@@ -23,18 +36,31 @@ security:
         login:
             pattern: ^/api/login$
             stateless: true
-            anonymous: true
-            provider: app_user_provider
-            json_login:
-                check_path: api_login
-                success_handler: lexik_jwt_authentication.handler.authentication_success
-                failure_handler: lexik_jwt_authentication.handler.authentication_failure   
-            logout:
-                path: api_logout    
+           # anonymous: true
+            provider: ldap_server
+           # guard:
+           #     authenticators:
+           #         - App\Security\CustomLdapAuthenticator
+          #  guard:
+          #      authenticators:
+          #          - App\Security\CustomLdapAuthenticator
+          #  json_login:
+          #      check_path: api_login
+          #      success_handler: lexik_jwt_authentication.handler.authentication_success
+          #      failure_handler: lexik_jwt_authentication.handler.authentication_failure   
+          #  json_login_ldap:
+          #      service: Symfony\Component\Ldap\Ldap      
+          #      dn_string: 'uid={username},dc=chu-lyon,dc=fr'  
+          #  logout:
+          #      path: api_logout    
+          #  guard:
+          #      authenticators:
+          #          - App\Security\CustomAuthenticator
+            custom_authenticator: App\Security\CustomLdapAuthenticator
         api:
             pattern: ^/api
             stateless: true
-            anonymous: true
+          #  anonymous: true
             provider: jwt
             guard:
                 authenticators:
