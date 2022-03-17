@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { NbAuthService } from '@nebular/auth';
 import { NbComponentShape, NbComponentSize, NbComponentStatus } from '@nebular/theme';
 import { ApiService } from 'src/app/@core/services/api.service';
 
@@ -10,10 +11,14 @@ import { ApiService } from 'src/app/@core/services/api.service';
 export class HomepageComponent implements OnInit   {
 
   private api: ApiService;
+  routeLink: string = '/auth/login';
 
-
-  constructor(api: ApiService) {
+  constructor(api: ApiService, private authService: NbAuthService) {
     this.api = api;
+
+    if(authService.isAuthenticated()) {
+      this.routeLink = '/visites/propose';
+    }
    
   }
 
