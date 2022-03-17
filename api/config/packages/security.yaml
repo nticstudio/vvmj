@@ -67,7 +67,7 @@ security:
                     - lexik_jwt_authentication.jwt_token_authenticator
     access_control:
         - { path: ^/api, roles: IS_AUTHENTICATED_ANONYMOUSLY } # Allows accessing the Swagger UI
-        - { path: ^/authentication_token, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/authentication_token, roles: PUBLIC_ACCESS }
         - { path: ^/api/, roles: IS_AUTHENTICATED_FULLY }    
-        - { path: ^/api/login$, roles: IS_AUTHENTICATED_ANONYMOUSLY } # Allows to login
+        - { path: ^/api/login$, roles: PUBLIC_ACCESS } # Allows to login
         

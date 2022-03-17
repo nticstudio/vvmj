@@ -1,7 +1,7 @@
 import { ModuleWithProviders, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { NbAuthJWTToken, NbAuthModule, NbPasswordAuthStrategy } from '@nebular/auth';
-
+import { environment } from 'src/environments/environment';
 
 export const NB_CORE_PROVIDERS = [
   ...NbAuthModule.forRoot({
@@ -19,7 +19,7 @@ export const NB_CORE_PROVIDERS = [
         },
         baseEndpoint: '',
         login: {
-          endpoint: '/login',
+          endpoint: `${environment.API_URL}/login`,
           method: 'post'
         },
         logout: {

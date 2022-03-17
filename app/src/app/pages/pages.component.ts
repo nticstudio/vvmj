@@ -39,7 +39,7 @@ export class PagesComponent implements OnInit {
   },
   {
     title: 'Se connecter',
-    link: '/',
+    link: '/auth/login',
     icon: 'lock-outline'
   },
 ];
