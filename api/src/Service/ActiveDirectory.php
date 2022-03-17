@@ -69,4 +69,34 @@ class ActiveDirectory
 
         return $value;
     }
+
+
+    // get an Active Directory user entry via LDAP using user-submitted credentials (used to authenticate the user)
+    public function searchFromActiveDirectory(string $email): ?Entry
+    {
+      //  $ldap = new Ldap($this->ldapAdapter);
+        $search = array();
+        $value = null;
+        try {
+        
+            if ($this->ldapAdapter->getConnection()->isBound()) {
+                $search = $this->ldap->query(
+                    'DC=chu-lyon,DC=fr',
+                    '(&(objectClass=Person)(| (mail='.$email.')))'
+                )->execute()->toArray();
+                
+
+               // $dn = 
+            }
+        } catch (ConnectionException $e) {
+            return null;
+        }
+       
+        if ($search && 1 === count($search)) {
+            $value = $search[0];
+           
+        }
+
+        return $value;
+    }
 }
