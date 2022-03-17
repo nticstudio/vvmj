@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { NbAuthService } from '@nebular/auth';
 import { NbMenuItem } from '@nebular/theme';
 import { Etablissement, Grade, Groupement, Metier } from '../@core/models/referentiel';
 import { ApiService } from '../@core/services/api.service'
@@ -51,8 +52,17 @@ export class PagesComponent implements OnInit {
   metiers: Metier[] = [];
   grades: Grade[] = [];
 
-  constructor(api: ApiService) {
+  constructor(api: ApiService, private authService: NbAuthService) {
     this.api = api;
+
+    if(this.authService.isAuthenticated()) {
+   
+      this.menu[4] = {
+        title: 'Se déconnecter',
+        link: '/auth/logout',
+        icon: 'unlock-outline'
+      };
+    }
    
   }
 
