@@ -1,10 +1,14 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { NbMediaBreakpointsService, NbMenuService, NbSidebarService, NbThemeService } from '@nebular/theme';
+import { NbGlobalPhysicalPosition, NbMediaBreakpointsService, NbMenuService, NbSidebarService, NbThemeService } from '@nebular/theme';
 
-//import { UserData } from '../../../@core/data/users';
-//import { LayoutService } from '../../../@core/utils';
-import { map, takeUntil } from 'rxjs/operators';
+// import { UserData } from '../../../@core/data/users';
+// import { LayoutService } from '../../../@core/utils';
+import { filter, map, takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs';
+import { NbAuthToken , NbAuthService, NbTokenStorage } from '@nebular/auth';
+import axios from 'axios';
+import { environment } from '../../../../environments/environment';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'ngx-header',
@@ -45,7 +49,10 @@ export class HeaderComponent implements OnInit, OnDestroy {
               private themeService: NbThemeService,
            //   private userService: UserData,
             //  private layoutService: LayoutService,
-              private breakpointService: NbMediaBreakpointsService) {
+              private breakpointService: NbMediaBreakpointsService,
+              private authService: NbAuthService,
+              private router: Router, 
+              private tokenstorage: NbTokenStorage) {
   }
 
   ngOnInit() {
@@ -54,6 +61,19 @@ export class HeaderComponent implements OnInit, OnDestroy {
   /*  this.userService.getUsers()
       .pipe(takeUntil(this.destroy$))
       .subscribe((users: any) => this.user = users.nick);*/
+
+      this.authService.onTokenChange()
+      .subscribe((token: NbAuthToken) => {
+
+        if (token.isValid()) {
+          this.user = token.getPayload(); // here we receive a payload from the token and assigns it to our `user` variable 
+          console.log(this.user);
+        }
+        else {
+          console.log('EXPIRED!!');
+        }
+
+      });
 
     const { xl } = this.breakpointService.getBreakpointsMap();
     this.themeService.onMediaQueryChange()
