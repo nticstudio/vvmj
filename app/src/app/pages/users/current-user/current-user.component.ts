@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { NbAuthService, NbAuthToken } from '@nebular/auth';
 import { User } from 'src/app/@core/models/user';
 import { ApiService } from 'src/app/@core/services/api.service';
 
@@ -9,17 +10,24 @@ import { ApiService } from 'src/app/@core/services/api.service';
 })
 export class CurrentUserComponent implements OnInit {
 
-  current: User
-  constructor(private api: ApiService) { 
-    this.current = new User();
+  current: any
+  constructor(private api: ApiService,  private authService: NbAuthService) { 
+    
   }
 
   ngOnInit(): void {
-    this.search()
+ 
+    this.authService.getToken()
+    .subscribe((token: NbAuthToken) => {
+
+      if (token.isValid()) {
+        this.current = token.getPayload(); // here we receive a payload from the token and assigns it to our `user` variable 
+        console.log(this.current);
+      }
+
+    });
   }
 
-  private async search() {   
-    await this.api.getMe().then(x => this.current = x);
-  }
+  
 
 }

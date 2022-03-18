@@ -72,17 +72,17 @@ class ActiveDirectory
 
 
     // get an Active Directory user entry via LDAP using user-submitted credentials (used to authenticate the user)
-    public function searchFromActiveDirectory(string $email): ?Entry
+    public function searchFromActiveDirectory(string $mail): ?array
     {
       //  $ldap = new Ldap($this->ldapAdapter);
-        $search = array();
+        $searchs = array();
         $value = null;
         try {
         
             if ($this->ldapAdapter->getConnection()->isBound()) {
-                $search = $this->ldap->query(
+                $searchs = $this->ldap->query(
                     'DC=chu-lyon,DC=fr',
-                    '(&(objectClass=Person)(| (mail='.$email.')))'
+                    '(&(objectClass=Person)(| (mail='.$mail.')))'
                 )->execute()->toArray();
                 
 
@@ -92,8 +92,29 @@ class ActiveDirectory
             return null;
         }
        
-        if ($search && 1 === count($search)) {
-            $value = $search[0];
+        // if ($searchs &&  count($searchs) > 0) {
+        //    // $value = $search[0];
+
+        //     foreach( $searchs as  $search) {
+                
+        //         $value[] =  array(
+        //         'email'=> $search->getAttribute('mail')[0], 
+        //         'cn'=> $search->getAttribute('cn')[0], 
+        //         'telephoneNumber'=>  $search->getAttribute('telephoneNumber')[0], 
+        //         'uf'=>  $search->getAttribute('division')[0]
+        //     );
+        // }
+
+         if ($searchs &&  count($searchs) == 1) {
+                $search = $searchs[0];
+
+                $value =  array(
+                'email'=> $search->getAttribute('mail')[0], 
+                'cn'=> $search->getAttribute('cn')[0], 
+                'telephoneNumber'=>  $search->getAttribute('telephoneNumber')[0], 
+                'uf'=>  $search->getAttribute('division')[0]);
+         
+        
            
         }
 

@@ -21,10 +21,12 @@ import {
   NbStepperModule,
   NbTabsetModule
 } from '@nebular/theme';
+import { LogoutComponent } from './logout/logout.component';
 
 @NgModule({
   declarations: [
-    LoginComponent
+    LoginComponent,
+    LogoutComponent
   ],
   imports: [
     ThemeModule,

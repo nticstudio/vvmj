@@ -57,7 +57,7 @@ export class VisiteEditComponent implements OnInit {
  }
 
  public chaperon_shortname() {
-  return this.shortname(this.visite.chaperon);
+  return  this.shortname(this.visite.chaperon);
 }
 
  private  shortname(prop: User) {

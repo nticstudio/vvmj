@@ -20,12 +20,24 @@ export const NB_CORE_PROVIDERS = [
         baseEndpoint: '',
         login: {
           endpoint: `${environment.API_URL}/login`,
-          method: 'post'
+          method: 'post',
+          redirect: {
+            success: '/',
+            failure: null,
+          },
         },
         logout: {
-          endpoint: '/logout',
-          method: 'post'
-        },
+          endpoint: `${environment.API_URL}/logout`,
+          method: 'post',
+        }
+        // logout: {
+        //  // redirectDelay: 500,
+        //   strategy: 'email',
+        // },
+        // logout: {
+        //   endpoint: `${environment.API_URL}/logout`,
+        //   method: 'post'
+        // },
 
 
       }),

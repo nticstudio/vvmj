@@ -25,6 +25,12 @@ use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\SearchFilter;
  *               "controller" = MeController::class,
  *               "read"= false
  *           },
+ *          "searchad"={
+ *               "path"= "/ad/search",
+ *               "method" = "get",
+ *               "controller" = AdController::class,
+ *               "read"= false
+ *           },
  *          "get"
  *     },
  *    normalizationContext= { "groups": {"read:users"}},

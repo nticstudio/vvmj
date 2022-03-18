@@ -1,21 +1,22 @@
 import { Etablissement, Groupement, Metier, Unite } from './referentiel'
 import { Inscription} from './inscription'
-import { User} from './user'
+
 
 export interface VisiteImpl {
     uf?: Unite;
     presentation: string;
-    date: Date;
+    date?: Date;
     hdebut?: Date;
     hfin?: Date;
     consigne: string;
     inscriptions: Inscription[];
     places: number;
-    created_by: User;
+    created_by?: any;
     gh?: Groupement;
     eg?: Etablissement;
     metier?: Metier;
-    chaperon: User;
+    chaperon?: any;
+ 
 
     
     
@@ -24,22 +25,23 @@ export interface VisiteImpl {
 export class Visite implements VisiteImpl {
     uf?: Unite
     presentation: string = ''
-    date: Date
+    date?: Date
     hdebut?: Date
     hfin?: Date
     consigne: string = ''
     inscriptions: Inscription[] = []
     places: number = 0;
-    created_by: User
+    created_by?: any
     gh?: Groupement
     eg?: Etablissement
     metier?: Metier
-    chaperon: User
+    chaperon?: any;
+    id?: number
 
     constructor() {
         this.date = new Date();
-        this.created_by = new User();
-        this.chaperon = new User();
+       // this.created_by = created_by;
+     //   this.chaperon = new User();
         
 
     }

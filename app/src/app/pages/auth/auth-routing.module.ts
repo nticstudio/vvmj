@@ -1,21 +1,23 @@
 import { NgModule, Component } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { NbLogoutComponent } from '@nebular/auth';
 import { LoginComponent } from './login/login.component';
+import { LogoutComponent } from './logout/logout.component';
 
 
 const routes: Routes = [
   {
     path: '',
-    component: LoginComponent,
+   // component: LoginComponent,
     children: [
       {
         path: 'login',
         component: LoginComponent
       },
-     /* {
+      {
         path: 'logout',
-        component: NbLogoutComponent,
-      },
+        component: LogoutComponent,
+      }/*,
       {
         path: 'register',
         component: NbRegisterComponent,

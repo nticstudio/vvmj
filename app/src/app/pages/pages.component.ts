@@ -1,6 +1,7 @@
+import { ContentObserver } from '@angular/cdk/observers';
 import { Component, OnInit } from '@angular/core';
-import { NbAuthService } from '@nebular/auth';
-import { NbMenuItem } from '@nebular/theme';
+import { NbAuthService, NbTokenService } from '@nebular/auth';
+import { NbMenuItem, NbMenuService } from '@nebular/theme';
 import { Etablissement, Grade, Groupement, Metier } from '../@core/models/referentiel';
 import { ApiService } from '../@core/services/api.service'
 
@@ -16,12 +17,12 @@ import { ApiService } from '../@core/services/api.service'
 })
 export class PagesComponent implements OnInit {
 
-  menu: NbMenuItem[] =  [ 
+  menuOnline: NbMenuItem[] =  [ 
   {
     title: 'Accueil',
     icon: 'home-outline',
     link: '/',
-    home: true
+    // home: true
   },
   {
     title: 'Mon tableau de bord',
@@ -39,12 +40,59 @@ export class PagesComponent implements OnInit {
     icon: 'settings-2-outline'
   },
   {
+    title: 'Se déconnecter',
+    link: '/auth/logout',
+    icon: 'unlock-outline'
+  },
+];
+   
+
+menuOffline: NbMenuItem[] =  [ 
+  {
+    title: 'Accueil',
+    icon: 'home-outline',
+    link: '/',
+    // home: true
+  },
+  {
+    title: 'Rechercher une visite',
+    link: '/visites',
+    icon: 'search-outline'
+  },
+  {
     title: 'Se connecter',
     link: '/auth/login',
     icon: 'lock-outline'
   },
 ];
-   
+
+menuAdmin: NbMenuItem[] =  [ 
+  {
+    title: 'Accueil',
+    icon: 'home-outline',
+    link: '/',
+    // home: true
+  },
+  {
+    title: 'Rechercher une visite',
+    link: '/visites',
+    icon: 'search-outline'
+  },
+  {
+    title: 'Administration',
+    link: '/admin',
+    icon: 'settings-2-outline'
+  },
+  {
+    title: 'Se déconnecter',
+    link: '/auth/logout',
+    icon: 'unlock-outline'
+  },
+];
+  
+
+
+menu: NbMenuItem[] =  [];
 
   private api: ApiService;
   groupements: any[] = [];
@@ -52,17 +100,26 @@ export class PagesComponent implements OnInit {
   metiers: Metier[] = [];
   grades: Grade[] = [];
 
-  constructor(api: ApiService, private authService: NbAuthService) {
+  constructor(api: ApiService, private authService: NbAuthService, private menuService: NbMenuService, private tokenService: NbTokenService) {
     this.api = api;
 
-    if(this.authService.isAuthenticated()) {
-   
-      this.menu[4] = {
-        title: 'Se déconnecter',
-        link: '/auth/logout',
-        icon: 'unlock-outline'
-      };
-    }
+    this.menu = this.menuOffline;
+
+    this.authService.isAuthenticated().subscribe((result) => {
+      if(result) {
+        this.menu = this.menuOnline;
+      }      
+      }
+    );
+
+    // this.menuService.onItemClick()
+    // .subscribe((event) => {
+    //   if (event.item.title == 'Se déconnecter') {
+    //     this.authService.logout('email').subscribe((result) => {
+    //      // this.tokenService.clear();
+    //     });
+    //   }
+    // });
    
   }
 

@@ -7,20 +7,34 @@
       </nb-card-header>
       <nb-card-body>
 
+        
+        <nb-alert *ngIf="showMessages.error && errors?.length && !submitted" outline="danger" role="alert">
+          <p class="alert-title"><b>Oh mince !</b></p>
+          <ul class="alert-message-list">
+            <li *ngFor="let error of errors" class="alert-message">{{ error }}</li>
+          </ul>
+        </nb-alert>
 
+        <nb-alert *ngIf="showMessages.success && messages?.length && !submitted" outline="success" role="alert">
+          <p class="alert-title"><b>Hourra !</b></p>
+          <ul class="alert-message-list">
+            <li *ngFor="let message of messages" class="alert-message">{{ message }}</li>
+          </ul>
+        </nb-alert>
+        
 
         <form (ngSubmit)="login()" #form="ngForm" aria-labelledby="title">
 
           <div class="form-control-group">
-            <label class="label" for="input-email">Email :</label>  <!-- pattern=".+@.+\..+" -->
+            <label class="label" for="input-email">Nom utilisateur :</label>  <!-- pattern=".+@.+\..+" -->
             <input nbInput
                    fullWidth
                    [(ngModel)]="user.username"
                    #username="ngModel"
                    name="username"
-                   id="input-email"
+                   id="input-username"
                  
-                   placeholder="Email address"
+                   placeholder="Nom utilisateur"
                    fieldSize="large"
                    autofocus
                    [status]="username.dirty ? (username.invalid  ? 'danger' : 'success') : 'basic'"

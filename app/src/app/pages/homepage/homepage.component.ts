@@ -16,9 +16,12 @@ export class HomepageComponent implements OnInit   {
   constructor(api: ApiService, private authService: NbAuthService) {
     this.api = api;
 
-    if(authService.isAuthenticated()) {
-      this.routeLink = '/visites/propose';
-    }
+    this.authService.isAuthenticated() .subscribe((result) => {
+      if(result) {
+        this.routeLink = '/visites/propose';
+       }
+       }
+     );
    
   }
 
