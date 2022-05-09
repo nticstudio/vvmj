@@ -4,7 +4,8 @@
 
 export const environment = {
   production: false,
-  API_URL:"http://localhost:8000/api"
+ API_URL:"http://localhost:8000/api"
+ // API_URL:"http://DI3943SU.chu-lyon.fr:8080/api"
 };
 
 /*

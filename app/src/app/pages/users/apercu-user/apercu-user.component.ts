@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit , Input} from '@angular/core';
+import { User } from 'src/app/@core/models/user';
 
 @Component({
   selector: 'app-apercu-user',
@@ -7,7 +8,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ApercuUserComponent implements OnInit {
 
-  constructor() { }
+  @Input()  user: User = new User();
+  constructor() {
+
+   }
 
   ngOnInit(): void {
   }

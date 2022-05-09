@@ -23,13 +23,17 @@ class AdController extends AbstractController
     }
    
      /**
-     * @Route("/api/ad/search", name="api_user_ad_search")
+     * @Route("/api/ad/search/{search}", name="api_user_ad_search")
      *     
      */
-    public function __invoke()
+    public function __invoke(string $search)
     {
-         $ldap_entry = $this->activeDirectory->searchFromActiveDirectory('bernard.dubois@chu-lyon.fr');
-        return $this->json($ldap_entry );
+        //  $ldap_entry = $this->activeDirectory->searchFromActiveDirectory('bernard.dubois@chu-lyon.fr');
+
+     
+        // $ldap_entry = $this->activeDirectory->searchFromActiveDirectoryByName($search);
+         $ldap_entry = $this->activeDirectory->searchFromActiveDirectory($search);
+        return $this->json(array($ldap_entry) );
         
     }
     

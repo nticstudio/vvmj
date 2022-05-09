@@ -26,7 +26,7 @@ use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\SearchFilter;
  *               "read"= false
  *           },
  *          "searchad"={
- *               "path"= "/ad/search",
+ *               "path"= "/ad/search/{search}",
  *               "method" = "get",
  *               "controller" = AdController::class,
  *               "read"= false

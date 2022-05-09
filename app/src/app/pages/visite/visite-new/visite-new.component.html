@@ -5,7 +5,14 @@
       <form>
         <div class="row">
             <div class="col-6"><label>Responsable de structure accueillante</label><app-current-user></app-current-user></div>
-            <div class="col-6"><label>Chaperon</label><app-current-user></app-current-user></div>
+            <div class="col-6"><label>Chaperon</label>
+              <!-- <app-current-user #chaperon (click)="getChaperon()"></app-current-user>  (value)="getChaperon($event)"-->
+               <app-select-ldap-user [hidden]="!SearchChaperon" (value)="getChaperon($event)"></app-select-ldap-user>
+               <div  (click)="switchSearch()">
+               <app-apercu-user [hidden]="SearchChaperon" [user]="visite.chaperon"></app-apercu-user>
+                </div>
+               
+            </div>
         </div>
         <div class="row">
           <div class="col-md-12">

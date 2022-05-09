@@ -15,6 +15,8 @@ import { MetierSelectComponent } from './metier-select/metier-select.component';
 import { Ng2SmartTableModule } from 'ng2-smart-table';
 import { ApercuUserComponent } from '../users/apercu-user/apercu-user.component';
 import { CurrentUserComponent } from '../users/current-user/current-user.component';
+import { SelectUserComponent } from '../users/select-user/select-user.component';
+import { SelectLdapUserComponent } from '../users/select-ldap-user/select-ldap-user.component';
 
 
 
@@ -29,7 +31,9 @@ import { CurrentUserComponent } from '../users/current-user/current-user.compone
     UniteSelectComponent,
     MetierSelectComponent,
     ApercuUserComponent,
-    CurrentUserComponent
+    CurrentUserComponent,
+    SelectUserComponent,
+    SelectLdapUserComponent
 
   ],
   imports: [

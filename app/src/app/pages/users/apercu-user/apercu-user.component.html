@@ -1,8 +1,8 @@
 
 <nb-card>
     <nb-card-body>
-        Prénom NOM<br>
-        (prenom.nom@chu-lyon.fr) <br>
-        (telephone)
+        {{ user.firstname }} {{ user.lastname | uppercase }}<br>
+        {{ user.email }} <br>
+        {{ user.phone }}
     </nb-card-body>
- </nb-card>
+</nb-card>

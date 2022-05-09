@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { NbAuthService, NbAuthToken } from '@nebular/auth';
 import { NbDateService, NbWindowRef } from '@nebular/theme';
+import { User } from 'src/app/@core/models/user';
 import { Visite } from 'src/app/@core/models/visite';
 import { ApiService } from 'src/app/@core/services/api.service';
 
@@ -14,6 +15,7 @@ export class VisiteNewComponent implements OnInit {
   visite: Visite;
   loading = false;
   user: any;
+  SearchChaperon = false;
 
   constructor(private api: ApiService, private route: ActivatedRoute, private dateService: NbDateService<Date>,  private authService: NbAuthService) { 
     this.visite = new Visite();
@@ -34,6 +36,28 @@ export class VisiteNewComponent implements OnInit {
       }
 
     });
+  }
+
+
+
+  
+  getChaperon(event: User) {
+    console.log('Current chaperon ',event);
+
+    
+    if(event) {
+     
+      this.visite.chaperon = event
+      console.log('change chameron select ',this.visite.chaperon)
+      this.switchSearch();
+     // this.metierCode = event.code;
+    }
+    
+  }
+
+  switchSearch() {
+    this.SearchChaperon = !this.SearchChaperon;
+    console.log(this.SearchChaperon);
   }
 
 }

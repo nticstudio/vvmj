@@ -108,16 +108,70 @@ class ActiveDirectory
          if ($searchs &&  count($searchs) == 1) {
                 $search = $searchs[0];
 
+             
+
                 $value =  array(
                 'email'=> $search->getAttribute('mail')[0], 
                 'cn'=> $search->getAttribute('cn')[0], 
-                'telephoneNumber'=>  $search->getAttribute('telephoneNumber')[0], 
-                'uf'=>  $search->getAttribute('division')[0]);
-         
-        
-           
+                'lastname'=> $search->getAttribute('sn')[0],
+                'firstname'=> $search->getAttribute('givenName')[0],
+                'phone'=>  $search->getAttribute('telephoneNumber')[0], 
+                'uf'=>  $search->getAttribute('division')[0]);  
+                               
         }
 
-        return $value;
+        return   $value ;
+    }
+
+    // get an Active Directory user entry via LDAP using user-submitted credentials (used to authenticate the user)
+    public function searchFromActiveDirectoryByName(string $name): ?array
+    {
+      //  $ldap = new Ldap($this->ldapAdapter);
+        $searchs = array();
+        $value = null;
+        try {
+        
+            if ($this->ldapAdapter->getConnection()->isBound()) {
+                $searchs = $this->ldap->query(
+                    'DC=chu-lyon,DC=fr',
+                    '(&(objectClass=Person)(| (sn='.$name.'*)))'
+                )->execute()->toArray();
+                
+
+               // $dn = 
+            }
+        } catch (ConnectionException $e) {
+            return null;
+        }
+       
+        // if ($searchs &&  count($searchs) > 0) {
+        //    // $value = $search[0];
+
+        //     foreach( $searchs as  $search) {
+                
+        //         $value[] =  array(
+        //         'email'=> $search->getAttribute('mail')[0], 
+        //         'cn'=> $search->getAttribute('cn')[0], 
+        //         'telephoneNumber'=>  $search->getAttribute('telephoneNumber')[0], 
+        //         'uf'=>  $search->getAttribute('division')[0]
+        //     );
+        // }
+
+         if ($searchs &&  count($searchs) == 1) {
+                $search = $searchs[0];
+
+             
+
+                $value =  array(
+                'email'=> $search->getAttribute('mail')[0], 
+                'cn'=> $search->getAttribute('cn')[0], 
+                'lastname'=> $search->getAttribute('sn')[0],
+                'firstname'=> $search->getAttribute('givenName')[0],
+                'phone'=>  $search->getAttribute('telephoneNumber')[0], 
+                'uf'=>  $search->getAttribute('division')[0]);  
+                               
+        }
+
+        return   $value ;
     }
 }

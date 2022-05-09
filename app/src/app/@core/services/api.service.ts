@@ -248,4 +248,18 @@ export class ApiService {
 
   }
 
+
+  async searchLdap(search?: string) {
+
+    let params = new HttpParams()
+
+    
+    if(search)
+       params =params.set('search',search);
+  
+    
+    return await this.get({ url: `${environment.API_URL}/ad/search/${search}`});       
+
+  }
+
 }

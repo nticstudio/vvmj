@@ -1,5 +1,6 @@
 import { Etablissement, Groupement, Metier, Unite } from './referentiel'
 import { Inscription} from './inscription'
+import { User } from './user';
 
 
 export interface VisiteImpl {
@@ -40,6 +41,7 @@ export class Visite implements VisiteImpl {
 
     constructor() {
         this.date = new Date();
+        this.chaperon = new User()
        // this.created_by = created_by;
      //   this.chaperon = new User();
         

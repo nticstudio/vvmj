@@ -1,18 +1,21 @@
-<p>select-user works!</p>
-
 <div class="form-group row">
-    <label for="userselect" class="label col-sm-3 col-form-label">Label</label>
+    <label for="userselect" class="label col-sm-3 col-form-label" [hidden]="!label">{{label}}</label>
   
     <div class="col-sm-9">
-      <input nbInput name="userselect" [(ngModel)]="userselect"
-        (ngModelChange)="onUserChange($event)" type="text" placeholder="tapez un email"
+      <input 
+      nbInput 
+      name="userselect" 
+      [(ngModel)]="userselect"
+        (ngModelChange)="onUserChange($event)"
+         type="text"
+          placeholder="rechercher en tapant un nom"
         [nbAutocomplete]="autoUser" />
   
   
       <nb-autocomplete #autoUser (selectedChange)="userEvent($event)">
   
-        <nb-option *ngFor="let option of filtered | async" [value]="option.libelle">
-          {{ option.libelle }}
+        <nb-option *ngFor="let option of filtered | async" [value]="option.email">
+          {{ option.firstname+' '+option.lastname }}
         </nb-option>
   
       </nb-autocomplete>
