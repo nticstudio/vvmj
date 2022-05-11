@@ -14,12 +14,7 @@ import {
   NbCheckboxModule,
   NbIconModule,
   NbInputModule,
-  NbMenuModule,
-  NbProgressBarModule,
-  NbSelectModule,
   NbSpinnerModule,
-  NbStepperModule,
-  NbTabsetModule
 } from '@nebular/theme';
 import { LogoutComponent } from './logout/logout.component';
 
@@ -38,7 +33,9 @@ import { LogoutComponent } from './logout/logout.component';
     NbButtonModule,
     NbCheckboxModule,
     AuthRoutingModule,
-    NbCardModule
+    NbCardModule,
+    NbSpinnerModule,
+
   ]
 })
 export class AuthModule { }

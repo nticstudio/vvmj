@@ -10,14 +10,17 @@ export class LoginComponent extends NbLoginComponent  {
 
  // window.location.reload();
 
+ loading = false;
 
  
- login(): void {
+ async login(): Promise<void> {
   this.errors = [];
   this.messages = [];
   this.submitted = true;
 
-  this.service.authenticate(this.strategy, this.user).subscribe((result: NbAuthResult) => {
+   this.loading = true;
+
+  await this.service.authenticate(this.strategy, this.user).subscribe((result: NbAuthResult) => {
     this.submitted = false;
 
     if (result.isSuccess()) {
@@ -44,6 +47,8 @@ export class LoginComponent extends NbLoginComponent  {
           
      
     }
+
+    this.loading = false;
 
     console.log('must redirect');
     this.cd.detectChanges();
