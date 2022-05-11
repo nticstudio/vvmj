@@ -5,7 +5,7 @@ import { VisiteNewComponent } from './visite-new/visite-new.component';
 import { VisiteEditComponent } from './visite-edit/visite-edit.component';
 import { VisiteRoutingModule } from './visite-routing.module';
 import { VisiteComponent } from './visite.component';
-import { NbAlertModule, NbAutocompleteModule, NbButtonModule, NbCardModule, NbDatepickerModule, NbInputModule, NbSelectModule, NbSpinnerModule } from '@nebular/theme';
+import { NbAlertModule, NbAutocompleteModule, NbButtonModule, NbCardModule, NbDatepickerModule, NbFormFieldModule, NbIconModule, NbInputModule, NbSelectModule, NbSpinnerModule } from '@nebular/theme';
 import { ThemeModule } from 'src/app/@theme/theme.module';
 import { FormsModule } from '@angular/forms';
 import { EtablissementSelectComponent } from './etablissement-select/etablissement-select.component';
@@ -17,6 +17,7 @@ import { ApercuUserComponent } from '../users/apercu-user/apercu-user.component'
 import { CurrentUserComponent } from '../users/current-user/current-user.component';
 import { SelectUserComponent } from '../users/select-user/select-user.component';
 import { SelectLdapUserComponent } from '../users/select-ldap-user/select-ldap-user.component';
+import { NbEvaIconsModule } from '@nebular/eva-icons';
 
 
 
@@ -34,7 +35,6 @@ import { SelectLdapUserComponent } from '../users/select-ldap-user/select-ldap-u
     CurrentUserComponent,
     SelectUserComponent,
     SelectLdapUserComponent
-
   ],
   imports: [
     CommonModule,
@@ -50,6 +50,8 @@ import { SelectLdapUserComponent } from '../users/select-ldap-user/select-ldap-u
     NbDatepickerModule,
     Ng2SmartTableModule,
     NbSpinnerModule,
+    NbIconModule,
+    NbEvaIconsModule,NbFormFieldModule   
   ]
 })
 export class VisiteModule { }

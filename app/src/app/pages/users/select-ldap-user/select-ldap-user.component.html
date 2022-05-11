@@ -1,14 +1,19 @@
-<div class="form-group row">
+<div class="form-group row" [nbSpinner]="loading" nbSpinnerStatus="warning" >
  
     <div class="col-sm-9">
+      <nb-form-field> 
+        <nb-icon nbPrefix icon="at-outline" pack="eva"></nb-icon>
+        
+        
+        
       <input 
       nbInput 
       name="userselect" 
       [(ngModel)]="userselect"
-      type="email"
-      placeholder="rechercher en tapant un nom" (keyup.enter)="onEnter()">
+      type="email" fullWidth  fieldSize="large"
+      placeholder="email @chu-lyon.fr du chaperon" (keyup.enter)="onEnter()">
 
-    
+    </nb-form-field>
   
     </div>
   

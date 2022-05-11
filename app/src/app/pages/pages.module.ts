@@ -2,13 +2,17 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { PagesComponent } from './pages.component';
 import { PagesRoutingModule } from './pages-routing.module';
-import { NbActionsModule, NbButtonModule, NbCardModule, NbCheckboxModule, NbDatepickerModule, NbIconModule, NbInputModule, NbMenuModule, NbRadioModule, NbSelectModule, NbSpinnerModule } from '@nebular/theme';
+import { NbActionsModule, NbButtonModule, NbCardModule, NbCheckboxModule, NbDatepickerModule, NbFormFieldModule, NbIconModule, NbInputModule, NbMenuModule, NbRadioModule, NbSelectModule, NbSpinnerModule } from '@nebular/theme';
 import { ThemeModule } from '../@theme/theme.module';
 import { HomepageComponent } from './homepage/homepage.component';
 import { FormsModule  } from '@angular/forms';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { Ng2SmartTableModule } from 'ng2-smart-table';
 import { AdminComponent } from './admin/admin.component';
+import { NbEvaIconsModule } from '@nebular/eva-icons';
+import { SelectLdapUserComponent } from './users/select-ldap-user/select-ldap-user.component';
+import { VisiteComponent } from './visite/visite.component';
+import { UsersModule } from './users/users.module';
 
 
 
@@ -17,7 +21,8 @@ import { AdminComponent } from './admin/admin.component';
     PagesComponent,
     HomepageComponent,
     DashboardComponent,
-    AdminComponent  ],
+    AdminComponent,
+     ],
   imports: [
     CommonModule,
     PagesRoutingModule,
@@ -31,9 +36,11 @@ import { AdminComponent } from './admin/admin.component';
     NbRadioModule,
     NbDatepickerModule,
     NbSelectModule,
-    NbIconModule,
     Ng2SmartTableModule,
     NbSpinnerModule,
-    FormsModule  ]
+    FormsModule,
+    NbIconModule,
+    NbEvaIconsModule,NbFormFieldModule
+    ]
 })
 export class PagesModule { }

@@ -23,50 +23,25 @@ export class SelectLdapUserComponent implements OnInit {
   currentItem!: User;
   private api: ApiService;
 
-
+  loading = false;
   constructor(api: ApiService) { 
     this.api = api;
   }
 
   ngOnInit(): void {
    
-    // if(this.source == 'local')
-      // this.api.getUsers().then(x => this.datas = x).then(x => this.filtered = of(this.datas));
-
-  }
   
-/*  async onUserChange(value: string) {
-    console.log('onUserChange');
-
-    if(this.source != 'local')
-      await this.api.searchLdap(value).then(x => this.datas = x).then(x => this.filtered = of(this.datas));
-      
-      this.filtered = of(this.filter(value));
   }
-
-  filter(value: string): any[] {
-    const filterValue = value.toLowerCase();
-
-    let r = this.datas.filter(optionValue => optionValue.firstname.toLowerCase().includes(filterValue) || optionValue.lastname.toLowerCase().includes(filterValue));
-    return r;
-    
-  }*/
 
 
   async onEnter() {
+    this.loading = true;
     console.log('on enter '+this.userselect);
     await this.api.searchLdap(this.userselect).then(x => this.datas = x).then(x => this.filtered = of(this.datas));
   
-    //let r = this.datas.filter(optionValue => optionValue.firstname.toLowerCase().includes(filterValue) || optionValue.lastname.toLowerCase().includes(filterValue));
     console.log(this.datas);
-    this.value.emit(this.datas[0]);  
-  //  return r;
-  }
-
-  userEvent(event: string) {
-    console.log( `Child userEvent : ${event}`);
-    
-   // this.value.emit(this.datas.find(optionValue => optionValue.email.toLowerCase().includes(event.toLowerCase())));   
+    this.value.emit(this.datas[0]);
+    this.loading = false;  
   }
 
 

@@ -16,12 +16,15 @@ import {
   NbAutocompleteModule,
   NbDatepickerModule,
   NbDialogModule,
+  NbFormFieldModule,
   NbMenuModule,
   NbSidebarModule,
   NbSpinnerModule,
+  NbTimepickerModule,
   NbToastrModule,
   NbWindowModule,
 } from '@nebular/theme';
+import { NbEvaIconsModule } from '@nebular/eva-icons';
 
 
 @NgModule({
@@ -36,12 +39,14 @@ import {
     NbSidebarModule.forRoot(),
     NbMenuModule.forRoot(),
     NbDatepickerModule.forRoot(),
+    NbTimepickerModule.forRoot(),
     NbDialogModule.forRoot(),
     NbWindowModule.forRoot(),
     NbToastrModule.forRoot(),
     CoreModule.forRoot(),
     ThemeModule.forRoot(),
-    NbAutocompleteModule
+    NbAutocompleteModule,
+    NbEvaIconsModule,NbFormFieldModule
   ],
   providers: [],
   bootstrap: [AppComponent]
