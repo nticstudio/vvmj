@@ -89,8 +89,9 @@
                         <label for="date" class="label col-sm-3 col-form-label">Créneau horaire</label>
                         <div class="col-sm-9">
 
-                            <input nbInput #hdebut name="hdebut" [nbDatepicker]="ngdateHD" [ngModel]="visite?.hdebut" placeholder="heure de début">
-                            <nb-datepicker #ngdateHD format="H:mm"></nb-datepicker>
+                            <input nbInput #hdebut name="hdebut" [nbTimepicker]="ngdateHD" [ngModel]="visite?.hdebut" placeholder="heure de début">
+                            <nb-timepicker #ngdateHD></nb-timepicker>
+                             <!-- <nb-datepicker #ngdateHD format="H:mm"></nb-datepicker> -->
                            
                         </div>
                         </div>
@@ -99,9 +100,9 @@
                             <label for="date" class="label col-sm-3 col-form-label"></label>
                             <div class="col-sm-9">
     
-                              <input nbInput #hfin name="hfin" [nbDatepicker]="ngdateHF"
-                                [ngModel]="visite?.hfin"  placeholder="heure de fin">
-                                <nb-datepicker #ngdateHF format="HH:mm"></nb-datepicker>
+                              <input nbInput #hfin name="hfin" [nbTimepicker]="ngdateHF" [ngModel]="visite?.hfin"  placeholder="heure de fin">
+                              <nb-timepicker #ngdateHF></nb-timepicker>
+                                <!-- <nb-datepicker #ngdateHF format="HH:mm"></nb-datepicker> -->
                             </div>
                             </div>
                     
