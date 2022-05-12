@@ -17,7 +17,7 @@ export class VisiteNewComponent implements OnInit {
   user: any;
   SearchChaperon = false;
 
-  constructor(private api: ApiService, private route: ActivatedRoute, private dateService: NbDateService<Date>,  private authService: NbAuthService) { 
+  constructor(private api: ApiService, private route: ActivatedRoute, private dateService: NbDateService<Date>,  private authService: NbAuthService, private apiService: ApiService) { 
     this.visite = new Visite();
   }
 
@@ -58,6 +58,14 @@ export class VisiteNewComponent implements OnInit {
   switchSearch() {
     this.SearchChaperon = !this.SearchChaperon;
     console.log(this.SearchChaperon);
+  }
+
+  async submit() {
+    console.log(this.visite);
+    const r = await this.api.postVisite(this.visite);
+
+    console.log(r);
+
   }
 
 }

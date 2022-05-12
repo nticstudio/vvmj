@@ -14,6 +14,7 @@ export interface Params {
 export interface GetOptions {
 	url: string;
 	params?: HttpParams;
+  data?: any;
 }
  
 export interface ErrorResponse {
@@ -58,6 +59,22 @@ export class ApiService {
  
 		}
    }
+
+
+   async post( options: GetOptions) {
+    const url =  `${options.url}`;
+    try {
+      let response = await this.client.post(url, options.data);
+      let data = await response.data;
+
+    return data;
+
+   } catch ( error ) {
+      
+     return this.normalizeError( error );   
+
+   }
+  }
 
    async getByLibelle( options: GetOptions, libelle: string) {
 
@@ -260,6 +277,11 @@ export class ApiService {
     
     return await this.get({ url: `${environment.API_URL}/ad/search/${search}`});       
 
+  }
+
+
+  async postVisite(data: any) {
+    return await this.post({ url: `${environment.API_URL}/visites.json`, data});   
   }
 
 }
