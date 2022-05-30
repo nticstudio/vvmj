@@ -62,9 +62,18 @@ export class VisiteNewComponent implements OnInit {
 
   async submit() {
     console.log(this.visite);
-    const r = await this.api.postVisite(this.visite);
+   
+    const u = await this.api.getUserByEmailOrCreate(this.visite.chaperon);
 
-    console.log(r);
+    if(u) {
+    this.visite.chaperon = `api/users/${u.id}`;    
+    console.log(u);
+    console.log(this.visite);
+    const r = await this.api.postVisite(this.visite);
+    }
+    else {
+      console.log("erreur lors de la création");
+    }
 
   }
 

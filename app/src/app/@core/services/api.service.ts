@@ -6,6 +6,7 @@ import { AxiosInstance } from "axios";
 import { Grade, Referentiel } from '../models/referentiel';
 import { HttpParams } from "@angular/common/http";
 import { environment } from "src/environments/environment";
+import { User } from "../models/user";
 
 export interface Params {
 	[ key: string ]: any;
@@ -256,6 +257,47 @@ export class ApiService {
     
     return await this.get({ url: `${environment.API_URL}/users.json`, params});       
 
+  }
+
+  
+  async getUserByEmail(email: string) {
+
+    let params = new HttpParams()
+
+
+    if(email == "")
+      return({
+        id: "-1",
+        message: "email missing",
+        // status: false
+      });
+   
+    params = params.set('email',email);
+ 
+    
+    const user =  await this.get({ url: `${environment.API_URL}/users.json`, params});       
+
+    console.log(user);
+
+    if(user.length == 0)
+       return false
+
+    return user;
+
+
+  }
+
+
+  async getUserByEmailOrCreate(user: any) {
+    let search  = await this.getUserByEmail(user.email);
+ 
+    
+    if(!search) {
+      let data = new User(user);    
+      return await this.post({ url: `${environment.API_URL}/users.json`, data});  
+    }
+
+    return search[0];
   }
 
   async getMe() {

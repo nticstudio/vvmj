@@ -31,13 +31,15 @@ use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\SearchFilter;
  *               "controller" = AdController::class,
  *               "read"= false
  *           },
- *          "get"
+ *          "get",
+ *          "post"
  *     },
  *    normalizationContext= { "groups": {"read:users"}},
  *      itemOperations={
  *          "get"={
  *              "normalization_context"={"groups"={"read:users","read:user"}}
  *           }
+ *        
  *      }
  * )
  * @ApiFilter(
