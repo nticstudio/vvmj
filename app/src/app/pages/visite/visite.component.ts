@@ -65,6 +65,9 @@ export class VisiteComponent implements OnInit {
       console.log('change etab select');
       this.etablissementCode = event.code;
     }
+    else {
+      this.etablissementCode = '';
+    }
     
     
   }
@@ -74,9 +77,14 @@ export class VisiteComponent implements OnInit {
 
     //this.etablissement = event;
     if(event) {
-      console.log('change gh select');
       this.groupementCode = event.code;
     }
+    else {
+      this.groupementCode = '';
+    }
+
+    console.log('change gh select '+ this.groupementCode);
+
     
     
   }
@@ -88,6 +96,9 @@ export class VisiteComponent implements OnInit {
       console.log('change uf select');
       this.ufCode = event.code;
     }
+  else {
+    this.ufCode = '';
+  }
     
   }
 
@@ -98,6 +109,9 @@ export class VisiteComponent implements OnInit {
     if(event) {
       console.log('change metier select');
       this.metierCode = event.code;
+    }
+    else {
+      this.metierCode = '';
     }
     
   }

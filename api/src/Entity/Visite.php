@@ -23,7 +23,7 @@ use App\Entity\Etablissement;
  * )
  * @ORM\Entity(repositoryClass=VisiteRepository::class)
  * @ApiFilter(
- *    SearchFilter::class, properties = {"id":"exact","uf.code":"exact"}
+ *    SearchFilter::class, properties = {"id":"exact","uf.code":"exact", "uf.eg.code":"exact", "uf.eg.gh.code":"exact", "metier.code":"exact"}
  * )
  */
 class Visite

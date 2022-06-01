@@ -14,6 +14,7 @@ export class GroupementSelectComponent implements OnInit {
   @Output() value = new EventEmitter<Groupement>();
   @Input()  label = '';
   @Input() initValue = '';
+  @Input() status = false;
 
   groupementselect: string = '';
   datas: Groupement[] = [];
@@ -28,7 +29,7 @@ export class GroupementSelectComponent implements OnInit {
 
   ngOnInit(): void {
    
-    this.api.getGroupements().then(x => this.datas = x).then(x => this.filtered = of(this.datas));
+    this.api.getGroupements(this.status).then(x => this.datas = x).then(x => this.filtered = of(this.datas));
 
     if(this.initValue != '') {
       console.log('INIT VALUE GROUPEMENT');
@@ -40,7 +41,7 @@ export class GroupementSelectComponent implements OnInit {
   }
   
   onGroupementChange(value: string) {
-    console.log('onGroupementChange');
+    console.log(`onGroupementChange ${value}`);
       this.filtered = of(this.filter(value));
   }
 
@@ -55,6 +56,15 @@ export class GroupementSelectComponent implements OnInit {
     console.log( `Child groupementEvent : ${event}`);
     this.value.emit(this.datas.find(optionValue => optionValue.libelle.toLowerCase().includes(event.toLowerCase())));
    
+  }
+
+  clear() {
+    
+    console.log('Clear : '+this.groupementselect)
+    this.groupementselect = '';
+    this.value.emit(undefined);
+    // relance 2x
+    this.value.emit(undefined);
   }
 
 

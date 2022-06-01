@@ -2,10 +2,16 @@
   <label for="etablissementselect" class="label col-sm-3 col-form-label">Établissement</label>
 
   <div class="col-sm-9">
+    <nb-form-field>
     <input nbInput name="etablissementselect" [(ngModel)]="etablissementselect"
       (ngModelChange)="onEtablissementChange($event)" type="text" placeholder="tapez un établissement"
       [nbAutocomplete]="autoEtablissement" />
 
+      <button nbSuffix nbButton ghost  (click)="clear()" type="button">
+        <nb-icon icon="trash-outline">
+        </nb-icon>
+      </button>
+</nb-form-field>
 
     <nb-autocomplete #autoEtablissement (selectedChange)="etablissementEvent($event)">
 

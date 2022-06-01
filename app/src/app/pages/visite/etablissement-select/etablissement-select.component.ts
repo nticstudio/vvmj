@@ -15,7 +15,7 @@ export class EtablissementSelectComponent implements OnInit, OnChanges {
   @Input() label = '';
   @Input() parentCode = '';
   @Input() initValue = '';
-
+  @Input() status = false;
 
   etablissementselect: string = '';
   datas: Referentiel[] = [];
@@ -50,7 +50,7 @@ export class EtablissementSelectComponent implements OnInit, OnChanges {
   private search() {
     if(!this.currentsearch) {
     this.currentsearch = true;
-    this.api.getEtablissements(this.parentCode).then(x => this.datas = x).then(()=> {
+    this.api.getEtablissements(this.status,this.parentCode).then(x => this.datas = x).then(()=> {
       this.filtered = of(this.datas);
       this.etablissementselect = '';
       this.currentsearch = false;
@@ -75,6 +75,15 @@ export class EtablissementSelectComponent implements OnInit, OnChanges {
 
   etablissementEvent(event: string) {
     this.value.emit(this.datas.find(optionValue => optionValue.libelle.toLowerCase().includes(event.toLowerCase())));
+  }
+
+  clear() {
+    
+    console.log('Clear : '+this.etablissementselect)
+    this.etablissementselect = '';
+    this.value.emit(undefined);
+    // relance 2x
+    this.value.emit(undefined);
   }
 
 

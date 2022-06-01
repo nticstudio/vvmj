@@ -53,3 +53,29 @@ export class Visite implements VisiteImpl {
 }
 
 
+export class NewVisite  {
+    uf?: any = ''
+    presentation: string = ''
+    date?: Date
+    hdebut?: Date
+    hfin?: Date
+    consigne: string = ''
+    inscriptions: Inscription[] = []
+    places: number = 0;
+    created_by?: any
+    metier?:  string = ''
+    chaperon?: any;
+
+    constructor() {
+        this.date = new Date();
+        this.chaperon = new User()
+       // this.created_by = created_by;
+     //   this.chaperon = new User();
+        
+
+    }
+
+
+
+}
+

@@ -10,6 +10,7 @@ use Doctrine\ORM\Mapping as ORM;
 use ApiPlatform\Core\Annotation\ApiFilter;
 use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\SearchFilter;
 use Symfony\Component\Serializer\Annotation\Groups;
+use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\BooleanFilter;
 
 /**
  * @ORM\Entity(repositoryClass=UniteRepository::class)
@@ -24,6 +25,7 @@ use Symfony\Component\Serializer\Annotation\Groups;
  * @ApiFilter(
  *    SearchFilter::class, properties = {"id":"exact","code":"partial", "libelle": "partial", "eg.code":"exact"}
  * )
+ * @ApiFilter( BooleanFilter::class, properties = { "status" })
  */
 class Unite
 {

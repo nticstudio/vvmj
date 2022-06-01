@@ -1,7 +1,8 @@
 <div class="form-group row">
-    <label for="uniteselect" class="label col-sm-3 col-form-label">Unité fonctionnelle</label>
+    <label for="uniteselect" class="label col-sm-3 col-form-label">{{label}}</label>
 
       <div class="col-sm-9"> 
+        <nb-form-field>
       <input  
       nbInput   
       name="uniteselect"
@@ -11,7 +12,12 @@
       placeholder="tapez une uf"
       [nbAutocomplete]="autoUniteSelect" 
       />
-      
+
+      <button nbSuffix nbButton ghost  (click)="clear()" type="button">
+        <nb-icon icon="trash-outline">
+        </nb-icon>
+      </button>
+      </nb-form-field>
 
     <nb-autocomplete #autoUniteSelect (selectedChange)="uniteEvent($event)"  [activeFirst]="true">
 

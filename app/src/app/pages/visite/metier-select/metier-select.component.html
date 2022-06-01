@@ -2,6 +2,7 @@
     <label for="metierselect" class="label col-sm-3 col-form-label">{{ label }}</label>
 
       <div class="col-sm-9"> 
+        <nb-form-field>
       <input  
       nbInput   
       name="metierselect"
@@ -11,7 +12,12 @@
       placeholder="tapez un métier"
       [nbAutocomplete]="autoMetierSelect" 
       />
-      
+
+      <button nbSuffix nbButton ghost  (click)="clear()" type="button">
+        <nb-icon icon="trash-outline">
+        </nb-icon>
+      </button>
+      </nb-form-field>
 
     <nb-autocomplete #autoMetierSelect (selectedChange)="metierEvent($event)"  [activeFirst]="true">
 

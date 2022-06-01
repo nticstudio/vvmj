@@ -110,7 +110,7 @@ export class VisiteListComponent implements OnInit {
    }
 
   ngOnInit(): void {
-    
+    this.search();
   }
 
   refentielDisplay(cell:any): string {
@@ -147,12 +147,12 @@ export class VisiteListComponent implements OnInit {
    async search() {
      console.log('search visites list');
      console.log(this.groupementCode, this.etablissementCode, this.ufCode, this.metierCode);
-     this.visites = await this.api.getVisites();
+
+    
+     this.visites = await this.api.getVisites(this.ufCode, this.etablissementCode, this.groupementCode, this.metierCode);
      
      
      this.source.load(this.visites);
-
-     //this.visites = await data.getData();
 
    }
 

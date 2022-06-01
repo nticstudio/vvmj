@@ -10,7 +10,7 @@ use Doctrine\ORM\Mapping as ORM;
 use ApiPlatform\Core\Annotation\ApiFilter;
 use Symfony\Component\Serializer\Annotation\Groups;
 use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\SearchFilter;
-
+use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\BooleanFilter;
 /**
 * @ApiResource(
  *    normalizationContext= { "groups": {"read:etablissements"}},
@@ -24,6 +24,7 @@ use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\SearchFilter;
  * @ApiFilter(
  *    SearchFilter::class, properties = {"id":"exact","code":"partial", "libelle": "partial", "gh.code":"exact"}
  * )
+ * @ApiFilter( BooleanFilter::class, properties = { "status" })
  */
 class Etablissement
 {

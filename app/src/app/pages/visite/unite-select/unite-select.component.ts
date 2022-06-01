@@ -12,9 +12,9 @@ export class UniteSelectComponent implements OnInit, OnChanges {
 
   
   @Output() value = new EventEmitter<Referentiel>();
-  @Input()  label = '';
+  @Input()  label = 'Unite fonctionnelle';
   @Input()  parentCode = '';
-
+  @Input() status = false;
 
   uniteselect: string = '';
   datas: Referentiel[] = [];
@@ -48,7 +48,7 @@ export class UniteSelectComponent implements OnInit, OnChanges {
 
   private search() {
     this.currentsearch = true;
-    this.api.getUFs(this.parentCode).then(x => this.datas = x).then(()=> {
+    this.api.getUFs(this.status,this.parentCode).then(x => this.datas = x).then(()=> {
       this.filtered = of(this.datas);
       this.uniteselect = '';
       this.currentsearch = false;
@@ -77,6 +77,15 @@ export class UniteSelectComponent implements OnInit, OnChanges {
   uniteEvent(event: string) {
     console.log( `Child unite : ${event}`);
     this.value.emit(this.datas.find(optionValue => optionValue.libelle.toLowerCase().includes(event.toLowerCase())));   
+  }
+
+  clear() {
+    
+    console.log('Clear : '+this.uniteselect)
+    this.uniteselect = '';
+    this.value.emit(undefined);
+    // relance 2x
+    this.value.emit(undefined);
   }
 
 }

@@ -1,38 +1,39 @@
-
-      <form (ngSubmit)="submit()" #form="ngForm" aria-labelledby="title">
-<nb-card [nbSpinner]="loading" nbSpinnerStatus="danger">
+<form (ngSubmit)="submit()" #form="ngForm" aria-labelledby="title">
+  <nb-card [hidden]="terminated" [nbSpinner]="loading" nbSpinnerStatus="danger">
     <nb-card-body>
 
-        <div class="row">
-            <div class="col-6"><label>Responsable de structure accueillante</label><app-current-user></app-current-user></div>
-            <div class="col-6"><label>Chaperon</label>
-              <!-- <app-current-user #chaperon (click)="getChaperon()"></app-current-user>  (value)="getChaperon($event)"-->
-               <app-select-ldap-user [hidden]="!SearchChaperon" (value)="getChaperon($event)"></app-select-ldap-user>
-               <div  (click)="switchSearch()">
-               <app-apercu-user [hidden]="SearchChaperon" [user]="visite.chaperon"></app-apercu-user>
-                </div>
-               
-            </div>
+      <div class="row">
+        <div class="col-6"><label>Responsable de structure accueillante</label>
+          <app-current-user></app-current-user>
         </div>
-        <div class="row">
-          <div class="col-md-12">
-            <!-- <p>{{ visite | json }}</p> -->
-            <div class="form-group row">
-              <label class="col-sm-3 label">Présentation du service</label>
-              <div class="col-sm-9">
-                <textarea nbInput name="presentation" fullWidth #presentation cols="30" rows="10"
-                  [(ngModel)]="visite.presentation"></textarea>
-              </div>
-            </div>
+        <div class="col-6"><label>Chaperon</label>
+          <!-- <app-current-user #chaperon (click)="getChaperon()"></app-current-user>  (value)="getChaperon($event)"-->
+          <app-select-ldap-user [hidden]="!SearchChaperon" (value)="getChaperon($event)"></app-select-ldap-user>
+          <div (click)="switchSearch()">
+            <app-apercu-user [hidden]="SearchChaperon" [user]="visite.chaperon"></app-apercu-user>
+          </div>
 
-            <div class="form-group row">
-                <label class="col-sm-3 label">Consignes</label>
-                <div class="col-sm-9">
-                    <textarea nbInput name="consigne" fullWidth #consigne cols="30" rows="5"
-                    [(ngModel)]="visite.consigne"></textarea>
-                </div>
-                </div>
-  
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <!-- <p>{{ visite | json }}</p> -->
+          <div class="form-group row">
+            <label class="col-sm-3 label">Présentation du service</label>
+            <div class="col-sm-9">
+              <textarea nbInput name="presentation" fullWidth #presentation cols="30" rows="10"
+                [(ngModel)]="visite.presentation"></textarea>
+            </div>
+          </div>
+
+          <div class="form-group row">
+            <label class="col-sm-3 label">Consignes</label>
+            <div class="col-sm-9">
+              <textarea nbInput name="consigne" fullWidth #consigne cols="30" rows="5"
+                [(ngModel)]="visite.consigne"></textarea>
+            </div>
+          </div>
+          <!--   
             <div class="form-group row">
               <label for="gh" class="label col-sm-3 col-form-label">Groupement</label>
               <div class="col-sm-5">
@@ -45,74 +46,90 @@
               <div class="col-sm-5">
                 <input nbInput name="eg" fullWidth value="{{visite?.eg?.code}} - {{visite?.eg?.libelle}}">
               </div>
-            </div>
-  
-            <div class="form-group row">
-              <label for="uf" class="label col-sm-3 col-form-label">Unité fonctionnelle</label>
-              <div class="col-sm-5">
-                <input nbInput name="uf" fullWidth value="{{visite?.uf?.code}} - {{visite?.uf?.libelle}}">
-              </div>
-            </div>
-  
-  
-            <div class="form-group row">
+            </div> -->
+
+          <!-- <div class="form-group row"> -->
+          <!-- <label for="uf" class="label col-sm-3 col-form-label">Unité fonctionnelle</label>
+              <div class="col-sm-5"> -->
+          <!-- <input nbInput name="uf" fullWidth value="{{visite?.uf?.code}} - {{visite?.uf?.libelle}}"> -->
+
+          <app-unite-select parentCode="" (value)="currentUf($event)"></app-unite-select>
+
+          <!-- </div> -->
+          <!-- </div> -->
+
+          <app-metier-select label="Métiers" (value)="currentMetier($event)"></app-metier-select>
+
+          <!-- <div class="form-group row">
               <label for="metier" class="label col-sm-3 col-form-label">Métier proposé</label>
               <div class="col-sm-5">
                 <input nbInput name="metier" fullWidth value="{{visite?.metier?.code}} - {{visite?.metier?.libelle}}">
               </div>
+            </div> -->
+
+
+          <div class="form-group row">
+            <label for="Places" class="label col-sm-3 col-form-label">Nombre de places proposées</label>
+            <div class="col-sm-9">
+              <input type="number" nbInput name="places" #places [(ngModel)]="visite.places">
             </div>
-
-            
-                        <div class="form-group row">
-                        <label for="Places" class="label col-sm-3 col-form-label">Nombre de places proposées</label>
-                        <div class="col-sm-9">
-                            <input type="number" nbInput name="places" #places  [(ngModel)]="visite.places">
-                        </div>
-                        </div>
-
-
-
-                
-               
-
-                      
-                
-                        <div class="form-group row">
-                            <label for="date" class="label col-sm-3 col-form-label">Date</label>
-                            <div class="col-sm-9">
-                            <input nbInput #date name="date" [nbDatepicker]="ngdate" [(ngModel)]="visite.date">
-                            <nb-datepicker #ngdate format="dd/MM/yyyy"></nb-datepicker>
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                        <label for="date" class="label col-sm-3 col-form-label">Créneau horaire</label>
-                        <div class="col-sm-9">
-
-                            <input nbInput #hdebut name="hdebut" [nbTimepicker]="ngdateHD"  [(ngModel)]="visite.hdebut" placeholder="heure de début">
-                            <nb-timepicker #ngdateHD format="H:mm"></nb-timepicker>
-                             <!-- <nb-datepicker #ngdateHD format="H:mm"></nb-datepicker> -->
-                           
-                        </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <label for="date" class="label col-sm-3 col-form-label"></label>
-                            <div class="col-sm-9">
-    
-                              <input nbInput #hfin name="hfin" [nbTimepicker]="ngdateHF"  [(ngModel)]="visite.hfin"  placeholder="heure de fin">
-                              <nb-timepicker #ngdateHF format="H:mm"></nb-timepicker>
-                                <!-- <nb-datepicker #ngdateHF format="HH:mm"></nb-datepicker> -->
-                            </div>
-                            </div>
-                    
-         
-  
           </div>
+
+
+
+
+
+
+
+
+          <div class="form-group row">
+            <label for="date" class="label col-sm-3 col-form-label">Date</label>
+            <div class="col-sm-9">
+              <input nbInput #date name="date" [nbDatepicker]="ngdate" [(ngModel)]="visite.date">
+              <nb-datepicker #ngdate format="dd/MM/yyyy"></nb-datepicker>
+            </div>
+          </div>
+
+          <div class="form-group row">
+            <label for="date" class="label col-sm-3 col-form-label">Créneau horaire</label>
+            <div class="col-sm-9">
+
+              <input nbInput #hdebut name="hdebut" [nbTimepicker]="ngdateHD" [(ngModel)]="visite.hdebut"
+                placeholder="heure de début">
+              <nb-timepicker #ngdateHD format="H:mm"></nb-timepicker>
+              <!-- <nb-datepicker #ngdateHD format="H:mm"></nb-datepicker> -->
+
+            </div>
+          </div>
+
+          <div class="form-group row">
+            <label for="date" class="label col-sm-3 col-form-label"></label>
+            <div class="col-sm-9">
+
+              <input nbInput #hfin name="hfin" [nbTimepicker]="ngdateHF" [(ngModel)]="visite.hfin"
+                placeholder="heure de fin">
+              <nb-timepicker #ngdateHF format="H:mm"></nb-timepicker>
+              <!-- <nb-datepicker #ngdateHF format="HH:mm"></nb-datepicker> -->
+            </div>
+          </div>
+
+
+
         </div>
-  
-    
+      </div>
+
+
     </nb-card-body>
-    <nb-card-footer> <button type="submit" nbButton fullWidth status="primary"  >Enregistrer</button></nb-card-footer>
+    <nb-card-footer> <button type="submit" nbButton fullWidth status="primary">Enregistrer</button></nb-card-footer>
   </nb-card>
-    </form>
+
+  <nb-card  [hidden]="!terminated">
+    <nb-card-body>
+      <div class="row">
+        <div class="col-12">
+          Votre visite a été enregistrée et est en attente de validation par la DPAS.
+        </div>
+      </div>
+    </nb-card-body>
+  </nb-card>
+</form>

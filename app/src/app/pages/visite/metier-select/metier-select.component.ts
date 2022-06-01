@@ -13,6 +13,7 @@ export class MetierSelectComponent implements OnInit {
   
   @Output() value = new EventEmitter<Referentiel>();
   @Input()  label = '';
+  @Input() status = false;
 
 
   metierselect: string = '';
@@ -31,7 +32,7 @@ export class MetierSelectComponent implements OnInit {
   ngOnInit(): void {  
     
       this.currentsearch = true;
-      this.api.getMetiers().then(x => this.datas = x).then(() => { this.currentsearch = false; this.filtered = of(this.datas);});  
+      this.api.getMetiers(this.status).then(x => this.datas = x).then(() => { this.currentsearch = false; this.filtered = of(this.datas);});  
   }
 
   onMetierSelectChange(value: string) {
@@ -55,6 +56,15 @@ export class MetierSelectComponent implements OnInit {
   metierEvent(event: string) {
     console.log( `Child metier : ${event}`);
     this.value.emit(this.datas.find(optionValue => optionValue.libelle.toLowerCase().includes(event.toLowerCase())));   
+  }
+
+  clear() {
+    
+    console.log('Clear : '+this.metierselect)
+    this.metierselect = '';
+    this.value.emit(undefined);
+    // relance 2x
+    this.value.emit(undefined);
   }
 
 }

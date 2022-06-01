@@ -136,13 +136,13 @@ export class ApiService {
   }
 
 
-   async getGroupements(libelle?: string) {
+  async getGroupements(status: boolean, libelle?: string) {
 
     let params = new HttpParams()
-
+    params = params.set('status',status);
     
     if(libelle)
-       params =params.set('libelle',libelle);
+       params = params.set('libelle',libelle);
   
     
     return await this.get({ url: `${environment.API_URL}/groupements.json`, params});       
@@ -155,10 +155,10 @@ export class ApiService {
   }
 
 
-   async getEtablissements(gh?: string,libelle?: string) {
+   async getEtablissements(status: boolean, gh?: string,libelle?: string) {
  
         let params = new HttpParams()
-
+        params = params.set('status',status);
     
         if(libelle)
            params = params.set('libelle',libelle);
@@ -177,8 +177,10 @@ export class ApiService {
   }
 
 
-  async getUFs(eg: string, libelle?: string ) {
+  async getUFs(status: boolean, eg: string, libelle?: string ) {
     let params = new HttpParams()
+
+    params = params.set('status',status);
 
     if(eg)
        params = params.set('eg.code',eg);
@@ -194,8 +196,10 @@ export class ApiService {
   }
 
 
-  async getMetiers(libelle?: string ) {
+  async getMetiers(status: boolean, libelle?: string ) {
     let params = new HttpParams()
+
+    params = params.set('status',status);
 
     if(libelle)
        params = params.set('libelle',libelle);
@@ -204,15 +208,29 @@ export class ApiService {
 
   }
 
-  async getVisites(uf?: string, metier?: string) {
+  async getVisites(uf?: string, eg?: string, gh?: string , metier?: string,) {
     let params = new HttpParams()
 
     
-    if(metier)
+    if(metier && metier != '')
        params =params.set('metier.code',metier);
     
-    if(uf)
+   
+     if(uf && uf != '')
        params = params.set('uf.code',uf);
+     else {
+
+              
+          if(eg && eg != '' ) {
+            params = params.set('uf.eg.code',eg);
+          } else {
+
+          if(gh && gh != '') {
+            params = params.set('uf.eg.gh.code',gh);
+          }
+        }
+      }
+
 
     
     return await this.get({ url: `${environment.API_URL}/visites.json`,  params});     

@@ -10,6 +10,7 @@ use Doctrine\ORM\Mapping as ORM;
 use ApiPlatform\Core\Annotation\ApiFilter;
 use Symfony\Component\Serializer\Annotation\Groups;
 use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\SearchFilter;
+use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\BooleanFilter;
 
 /**
  * @ApiResource(
@@ -21,9 +22,9 @@ use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\SearchFilter;
  *    }
  * )
  * @ORM\Entity(repositoryClass=GroupementRepository::class)
- * @ApiFilter(
- *    SearchFilter::class, properties = {"id":"exact","code":"partial", "libelle": "partial"}
- * )
+ * 
+ * @ApiFilter( SearchFilter::class, properties = {"id":"exact","code":"partial", "libelle": "partial"})
+ * @ApiFilter( BooleanFilter::class, properties = { "status" })
  */
 class Groupement
 {

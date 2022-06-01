@@ -1,6 +1,6 @@
 <form #f="ngForm" (ngSubmit)="onSubmit()">
-  <div class="row">
-    <div class="col-md-12">
+  <!-- <div class="row"> -->
+    <!-- <div class="col-md-12"> -->
       <nb-card>
         <nb-card-header>
           <h4 class="text-primary">Rechercher une visite</h4>
@@ -9,15 +9,13 @@
           <div class="row">
             <div class="col-6">
               <h6>Par structure</h6>
-              <app-groupement-select label="Groupement" (value)="currentGroupement($event)"></app-groupement-select>
-              <app-etablissement-select [parentCode]="groupementCode" 
-                (value)="currentEtablissement($event)"></app-etablissement-select>
-              <app-unite-select [parentCode]="etablissementCode" 
-                (value)="currentUf($event)"></app-unite-select>
+              <app-groupement-select label="Groupement" [status]="true" (value)="currentGroupement($event)"></app-groupement-select>
+              <app-etablissement-select [parentCode]="groupementCode"  [status]="true" (value)="currentEtablissement($event)"></app-etablissement-select>
+              <app-unite-select [parentCode]="etablissementCode"  [status]="true" (value)="currentUf($event)"></app-unite-select>
             </div>
             <div class="col-6">
               <h6>Par Métier</h6>
-              <app-metier-select label="Métiers" (value)="currentMetier($event)"></app-metier-select>
+              <app-metier-select label="Métiers"  [status]="true" (value)="currentMetier($event)"></app-metier-select>
             </div>
           </div>
         </nb-card-body>
@@ -28,8 +26,8 @@
           </div>
         </nb-card-footer>
       </nb-card>
-    </div>
-  </div>
+    <!-- </div> -->
+  <!-- </div> -->
 </form>
 
 <app-visite-list [ufCode]="ufCode" [groupementCode]="groupementCode" [etablissementCode]="etablissementCode" [metierCode]="metierCode"></app-visite-list>

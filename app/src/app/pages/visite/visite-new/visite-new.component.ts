@@ -2,8 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { NbAuthService, NbAuthToken } from '@nebular/auth';
 import { NbDateService, NbWindowRef } from '@nebular/theme';
+import { Referentiel } from 'src/app/@core/models/referentiel';
 import { User } from 'src/app/@core/models/user';
-import { Visite } from 'src/app/@core/models/visite';
+import { NewVisite } from 'src/app/@core/models/visite';
 import { ApiService } from 'src/app/@core/services/api.service';
 
 @Component({
@@ -12,13 +13,15 @@ import { ApiService } from 'src/app/@core/services/api.service';
   styleUrls: ['./visite-new.component.css']
 })
 export class VisiteNewComponent implements OnInit {
-  visite: Visite;
+  visite: NewVisite;
   loading = false;
   user: any;
   SearchChaperon = false;
+  terminated = false;
 
   constructor(private api: ApiService, private route: ActivatedRoute, private dateService: NbDateService<Date>,  private authService: NbAuthService, private apiService: ApiService) { 
-    this.visite = new Visite();
+    this.visite = new NewVisite();
+    this.terminated = false;
   }
 
   ngOnInit(): void {
@@ -70,11 +73,33 @@ export class VisiteNewComponent implements OnInit {
     console.log(u);
     console.log(this.visite);
     const r = await this.api.postVisite(this.visite);
+    this.terminated = true;
     }
     else {
       console.log("erreur lors de la création");
     }
 
+  }
+
+  currentUf(event: Referentiel) {
+    console.log('Current uf ',event);
+
+    if(event) {      
+       this.visite.uf = `api/unites/${event.id}`;
+    }
+    
+  }
+
+
+  currentMetier(event: Referentiel) {
+    console.log('Current metier ',event);
+
+    
+    if(event) {
+      console.log('change metier select');
+      this.visite.metier =  `api/metiers/${event.id}`;
+    }
+    
   }
 
 }
