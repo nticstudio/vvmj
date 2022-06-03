@@ -16,7 +16,7 @@
     <nb-autocomplete #autoGroupement (selectedChange)="groupementEvent($event)">
 
       <nb-option *ngFor="let option of filtered | async" [value]="option.libelle">
-        {{ option.libelle }}
+        {{option.code }} -  {{ option.libelle }}
       </nb-option>
 
     </nb-autocomplete>

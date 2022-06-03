@@ -22,7 +22,7 @@
     <nb-autocomplete #autoUniteSelect (selectedChange)="uniteEvent($event)"  [activeFirst]="true">
 
       <nb-option *ngFor="let option of filtered | async" [value]="option.libelle">
-        {{ option.libelle }}
+        {{option.code }} - {{ option.libelle }}
       </nb-option>
 
     </nb-autocomplete>
