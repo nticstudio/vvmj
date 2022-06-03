@@ -53,7 +53,7 @@ export class VisiteEditComponent implements OnInit {
   }
 
  public created_by_shortname() {
-   return this.shortname(this.visite.created_by);
+   return this.shortname(this.visite.createdBy);
  }
 
  public chaperon_shortname() {

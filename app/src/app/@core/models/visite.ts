@@ -12,7 +12,7 @@ export interface VisiteImpl {
     consigne: string;
     inscriptions: Inscription[];
     places: number;
-    created_by?: any;
+    createdBy?: any;
     gh?: Groupement;
     eg?: Etablissement;
     metier?: Metier;
@@ -31,8 +31,8 @@ export class Visite implements VisiteImpl {
     hfin?: Date
     consigne: string = ''
     inscriptions: Inscription[] = []
-    places: number = 0;
-    created_by?: any
+    places: number = 1;
+    createdBy?: any
     gh?: Groupement
     eg?: Etablissement
     metier?: Metier
@@ -61,8 +61,8 @@ export class NewVisite  {
     hfin?: Date
     consigne: string = ''
     inscriptions: Inscription[] = []
-    places: number = 0;
-    created_by?: any
+    places: number = 1;
+    createdBy?: any
     metier?:  string = ''
     chaperon?: any;
 

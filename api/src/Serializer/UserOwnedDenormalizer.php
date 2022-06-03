@@ -39,20 +39,18 @@ class UserOwnedDenormalizer implements ContextAwareDenormalizerInterface, Denorm
 
     public function denormalize($data,  $type,  $format = null, array $context = []) {
        
-        $context[self::ALREADY_DENORMALIZER] = true;
-        
 
-        //  if (Patient::class === $type  || Consult::class === $type  ) {
-        
-        
         $obj = $this->denormalizer->denormalize($data,  $type,  $format, $context);
-
-        //$obj_id = $obj->getCreatedBy()->getId();
-
-        //    if($obj_id )
+       /* $context[self::ALREADY_DENORMALIZER] = true;
         
-       // $obj->setCreatedBy($this->security->getUser());       
-        ///*dd($obj);
+
+        if (Visite::class === $type  ) {                
+           $obj = $this->denormalizer->denormalize($data,  $type,  $format, $context);
+           $user_id = $obj->getCreatedBy()->getId();
+           if(!$user_id )
+           $obj->setCreatedBy($this->security->getUser());       
+        }
+        */
         return $obj;
     }
 

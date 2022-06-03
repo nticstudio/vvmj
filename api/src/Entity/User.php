@@ -255,7 +255,9 @@ class User implements UserInterface, JWTUserInterface
     }
 
     public static  function createFromPayload($id, array $payload) {
-        $user =  (new User())->setId($id)->setEmail($payload['email'])->setLastname($payload['lastname'])->setFirstname($payload['firstname'])->setPhone($payload['phone']);
+        $user =  (new User())->setId($id)->setEmail($payload['email'])->setPhone($payload['telephoneNumber']);
+
+        //->setLastname($payload['lastname'])->setFirstname($payload['firstname'])->
 
        // $user->setId($payload->id)
 

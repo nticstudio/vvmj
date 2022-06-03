@@ -54,8 +54,7 @@ class Visite
 
     /**
      * @ORM\Column(type="date")
-     * @Groups({"read:visites"}) 
-     * @Groups({"read:visite"}) 
+     * @Groups({"read:visite","read:visites"}) 
      */
     private $date;
 
@@ -73,7 +72,7 @@ class Visite
 
     /**
      * @ORM\ManyToOne(targetEntity=User::class, inversedBy="visites")
-     * @Groups({"read:visite"}) 
+     * @Groups({"read:visite","read:visites"}) 
      */
     private $created_by;
 

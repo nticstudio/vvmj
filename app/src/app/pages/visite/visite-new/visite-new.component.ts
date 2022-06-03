@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { NgForm } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { NbAuthService, NbAuthToken } from '@nebular/auth';
 import { NbDateService, NbWindowRef } from '@nebular/theme';
@@ -32,7 +33,7 @@ export class VisiteNewComponent implements OnInit {
       if (token.isValid()) {
       
         this.user = token.getPayload();
-        this.visite.created_by = `api/users/${this.user.id}`;
+         this.visite.createdBy = `api/users/${this.user.id}`;
       }
       else {
         console.log('EXPIRED!!');
@@ -63,9 +64,13 @@ export class VisiteNewComponent implements OnInit {
     console.log(this.SearchChaperon);
   }
 
-  async submit() {
+  async onSubmit(f: NgForm) {
+    this.visite.createdBy = `api/users/${this.user.id}`;
     console.log(this.visite);
+    console.log(f.value);
    
+
+   if(f.valid) {
     const u = await this.api.getUserByEmailOrCreate(this.visite.chaperon);
 
     if(u) {
@@ -78,6 +83,7 @@ export class VisiteNewComponent implements OnInit {
     else {
       console.log("erreur lors de la création");
     }
+  }
 
   }
 

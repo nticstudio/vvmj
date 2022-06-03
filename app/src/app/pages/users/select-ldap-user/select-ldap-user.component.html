@@ -8,10 +8,16 @@
         
       <input 
       nbInput 
-      name="userselect" 
+      name="userselect"       
       [(ngModel)]="userselect"
       type="email" fullWidth  fieldSize="large"
-      placeholder="email @chu-lyon.fr du chaperon" (keyup.enter)="onEnter()">
+      placeholder="email @chu-lyon.fr du chaperon" (keyup.enter)="preventKeyup()">
+
+
+      <button nbSuffix nbButton ghost  (click)="onEnter()" type="button">
+        <nb-icon icon="search-outline">
+        </nb-icon>
+      </button>
 
     </nb-form-field>
   

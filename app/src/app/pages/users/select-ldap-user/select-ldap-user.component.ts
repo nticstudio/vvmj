@@ -44,5 +44,9 @@ export class SelectLdapUserComponent implements OnInit {
     this.loading = false;  
   }
 
+  preventKeyup() {
+    return false;
+  }
+
 
 }

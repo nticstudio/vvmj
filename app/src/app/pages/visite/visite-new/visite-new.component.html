@@ -1,4 +1,8 @@
-<form (ngSubmit)="submit()" #form="ngForm" aria-labelledby="title">
+<form (ngSubmit)="onSubmit(f)" #f="ngForm" aria-labelledby="title">
+
+
+  <p>Form valid: {{ f.valid }}</p>
+
   <nb-card [hidden]="terminated" [nbSpinner]="loading" nbSpinnerStatus="danger">
     <nb-card-body>
 
@@ -22,7 +26,7 @@
             <label class="col-sm-3 label">Présentation du service</label>
             <div class="col-sm-9">
               <textarea nbInput name="presentation" fullWidth #presentation cols="30" rows="10"
-                [(ngModel)]="visite.presentation"></textarea>
+                [(ngModel)]="visite.presentation" required></textarea>
             </div>
           </div>
 
@@ -30,7 +34,7 @@
             <label class="col-sm-3 label">Consignes</label>
             <div class="col-sm-9">
               <textarea nbInput name="consigne" fullWidth #consigne cols="30" rows="5"
-                [(ngModel)]="visite.consigne"></textarea>
+                [(ngModel)]="visite.consigne" required></textarea>
             </div>
           </div>
           <!--   
@@ -53,12 +57,12 @@
               <div class="col-sm-5"> -->
           <!-- <input nbInput name="uf" fullWidth value="{{visite?.uf?.code}} - {{visite?.uf?.libelle}}"> -->
 
-          <app-unite-select parentCode="" (value)="currentUf($event)"></app-unite-select>
+          <app-unite-select parentCode="" (value)="currentUf($event)" required></app-unite-select>
 
           <!-- </div> -->
           <!-- </div> -->
 
-          <app-metier-select label="Métiers" (value)="currentMetier($event)"></app-metier-select>
+          <app-metier-select label="Métiers" (value)="currentMetier($event)" required></app-metier-select>
 
           <!-- <div class="form-group row">
               <label for="metier" class="label col-sm-3 col-form-label">Métier proposé</label>
@@ -71,7 +75,7 @@
           <div class="form-group row">
             <label for="Places" class="label col-sm-3 col-form-label">Nombre de places proposées</label>
             <div class="col-sm-9">
-              <input type="number" nbInput name="places" #places [(ngModel)]="visite.places">
+              <input type="number" nbInput name="places" #places [(ngModel)]="visite.places" required>
             </div>
           </div>
 
@@ -85,7 +89,7 @@
           <div class="form-group row">
             <label for="date" class="label col-sm-3 col-form-label">Date</label>
             <div class="col-sm-9">
-              <input nbInput #date name="date" [nbDatepicker]="ngdate" [(ngModel)]="visite.date">
+              <input nbInput #date name="date" [nbDatepicker]="ngdate" [(ngModel)]="visite.date" required>
               <nb-datepicker #ngdate format="dd/MM/yyyy"></nb-datepicker>
             </div>
           </div>
@@ -95,7 +99,7 @@
             <div class="col-sm-9">
 
               <input nbInput #hdebut name="hdebut" [nbTimepicker]="ngdateHD" [(ngModel)]="visite.hdebut"
-                placeholder="heure de début">
+                placeholder="heure de début" required>
               <nb-timepicker #ngdateHD format="H:mm"></nb-timepicker>
               <!-- <nb-datepicker #ngdateHD format="H:mm"></nb-datepicker> -->
 
@@ -107,7 +111,7 @@
             <div class="col-sm-9">
 
               <input nbInput #hfin name="hfin" [nbTimepicker]="ngdateHF" [(ngModel)]="visite.hfin"
-                placeholder="heure de fin">
+                placeholder="heure de fin" required>
               <nb-timepicker #ngdateHF format="H:mm"></nb-timepicker>
               <!-- <nb-datepicker #ngdateHF format="HH:mm"></nb-datepicker> -->
             </div>
