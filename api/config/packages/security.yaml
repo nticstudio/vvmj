@@ -57,6 +57,12 @@ security:
         - { path: ^/authentication_token, roles: PUBLIC_ACCESS }  
         - { path: ^/api/ad, roles: PUBLIC_ACCESS } # Allows to login
         - { path: ^/api/login$, roles: PUBLIC_ACCESS } # Allows to login
+        - { path: ^/api/metiers, roles: PUBLIC_ACCESS, methods: [GET] }
+        - { path: ^/api/etablissements, roles: PUBLIC_ACCESS, methods: [GET] }
+        - { path: ^/api/groupements, roles: PUBLIC_ACCESS, methods: [GET] }
+        - { path: ^/api/etablissements, roles: PUBLIC_ACCESS, methods: [GET] }
+        - { path: ^/api/unites, roles: PUBLIC_ACCESS, methods: [GET] }
+        - { path: ^/api/visites, roles: PUBLIC_ACCESS, methods: [GET] }
         - { path: ^/api/, roles: IS_AUTHENTICATED_FULLY }    
       
         
