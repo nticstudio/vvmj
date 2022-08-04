@@ -8,6 +8,8 @@ import { HttpParams } from "@angular/common/http";
 import { environment } from "src/environments/environment";
 import { User } from "../models/user";
 
+import { NbAuthToken , NbAuthService, NbTokenStorage } from '@nebular/auth';
+
 export interface Params {
 	[ key: string ]: any;
 }
@@ -35,14 +37,34 @@ export class ApiService {
   private errorHandler: ErrorHandler;
   
 
-  constructor(errorHandler: ErrorHandler) {
+  constructor(errorHandler: ErrorHandler, private authService: NbAuthService) {
     this.errorHandler = errorHandler;
 
     this.client = axios.create({
-         headers: {
-          "X-Custom-Auth": Date.now().toString()      
-         }
+      headers: {
+        "X-Custom-Auth": Date.now().toString()
+      }
     });
+    
+
+    this.authService.onTokenChange()
+      .subscribe((token: NbAuthToken) => {
+
+        if (token.isValid()) {
+          // this.user = token.getPayload(); // here we receive a payload from the token and assigns it to our `user` variable 
+          this.client = axios.create({
+            headers: {
+              "X-Custom-Auth": Date.now().toString(),
+              "Authorization": 'Bearer ' + token.getValue()
+            }
+          });
+        }
+        else {
+          console.log('EXPIRED!!');
+        }
+
+      });
+   
 
    }
 
