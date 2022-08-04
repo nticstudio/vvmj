@@ -20,6 +20,8 @@ export class VisiteEditComponent implements OnInit {
   metierCode: string = '';
   created_by: string = '';
   loading = true;
+  created_by_shortname: string = '';
+  chaperon_shortname: string = '';
 
   constructor(private api: ApiService, private route: ActivatedRoute, private dateService: NbDateService<Date>, public windowRef: NbWindowRef) { 
     this.visite = new Visite();
@@ -39,7 +41,13 @@ export class VisiteEditComponent implements OnInit {
    
        this.visite = await this.api.getVisite(this.visiteId);       
        console.log(this.visite);
+
+       this.created_by_shortname = this.shortname(this.visite.created_by);
+       this.chaperon_shortname = this.shortname(this.visite.chaperon);
+       
        this.loading = false;
+
+       
     //   console.log( this.dateService.getDateFormat());
     //   // console.log(this.visite.created_by.shortname())
     //   console.log(this.created_by_shortname());
@@ -52,15 +60,10 @@ export class VisiteEditComponent implements OnInit {
     }
   }
 
- public created_by_shortname() {
-   return this.shortname(this.visite.createdBy);
- }
-
- public chaperon_shortname() {
-  return  this.shortname(this.visite.chaperon);
-}
 
  private  shortname(prop: User) {
+
+  console.log(prop);
   const firstname =  prop.firstname && prop.firstname.length
   ? (prop.firstname.charAt(0).toUpperCase() + prop.firstname.slice(1).toLowerCase())
   : ''; 

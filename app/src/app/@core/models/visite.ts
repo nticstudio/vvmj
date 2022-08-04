@@ -32,7 +32,7 @@ export class Visite implements VisiteImpl {
     consigne: string = ''
     inscriptions: Inscription[] = []
     places: number = 1;
-    createdBy?: any
+    created_by?: any
     gh?: Groupement
     eg?: Etablissement
     metier?: Metier
@@ -41,12 +41,13 @@ export class Visite implements VisiteImpl {
 
     constructor() {
         this.date = new Date();
-        this.chaperon = new User()
+        this.chaperon = new User();
        // this.created_by = created_by;
      //   this.chaperon = new User();
         
 
     }
+
 
 
 
@@ -62,7 +63,7 @@ export class NewVisite  {
     consigne: string = ''
     inscriptions: Inscription[] = []
     places: number = 1;
-    createdBy?: any
+    created_by?: any
     metier?:  string = ''
     chaperon?: any;
 

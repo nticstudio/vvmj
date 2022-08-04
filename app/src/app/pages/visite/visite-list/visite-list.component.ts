@@ -145,7 +145,7 @@ export class VisiteListComponent implements OnInit {
    }*/
 
    async search() {
-     console.log('search visites list');
+    //  console.log('search visites list');
      console.log(this.groupementCode, this.etablissementCode, this.ufCode, this.metierCode);
 
     
@@ -158,10 +158,10 @@ export class VisiteListComponent implements OnInit {
 
    onCustom(event: any) {
 
-    console.log(event.data.id);
+    // console.log(event.data.id);
    // this.router.navigateByUrl(`/visites/edit/${event.data.id}`);
-    alert(`Custom event '${event.action}' fired on row №: ${event.data.id}`)
-    this.windowService.open(VisiteEditComponent, { title: `Détail de la visite`, context: { visiteId: event.data.id} });
+    // alert(`Custom event '${event.action}' fired on row №: ${event.data.id}`)
+    this.windowService.open(VisiteEditComponent, { title: `Détail de cette visite`, context: { visiteId: event.data.id} });
     
   }
 

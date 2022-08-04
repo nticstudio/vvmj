@@ -33,7 +33,7 @@ export class VisiteNewComponent implements OnInit {
       if (token.isValid()) {
       
         this.user = token.getPayload();
-         this.visite.createdBy = `api/users/${this.user.id}`;
+         this.visite.created_by = `api/users/${this.user.id}`;
       }
       else {
         console.log('EXPIRED!!');
@@ -65,7 +65,7 @@ export class VisiteNewComponent implements OnInit {
   }
 
   async onSubmit(f: NgForm) {
-    this.visite.createdBy = `api/users/${this.user.id}`;
+    this.visite.created_by = `api/users/${this.user.id}`;
     console.log(this.visite);
     console.log(f.value);
    

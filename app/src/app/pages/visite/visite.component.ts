@@ -48,17 +48,17 @@ export class VisiteComponent implements OnInit {
   onSubmit() : void { 
     this.submitted = true;  
 
-    console.log("Groupement = "+this.groupementCode);
-    console.log("Etablissmeent = "+this.etablissementCode);
-    console.log("Unite = "+this.ufCode);
-    console.log("MEtier = "+this.metierCode);
+    // console.log("Groupement = "+this.groupementCode);
+    // console.log("Etablissmeent = "+this.etablissementCode);
+    // console.log("Unite = "+this.ufCode);
+    // console.log("MEtier = "+this.metierCode);
 
    this.visiteList.search();
       
   }
 
   currentEtablissement(event: Referentiel) {
-    console.log('Current etablissement ',event);
+    // console.log('Current etablissement ',event);
 
     //this.etablissement = event;
     if(event) {
@@ -73,7 +73,7 @@ export class VisiteComponent implements OnInit {
   }
 
   currentGroupement(event: Referentiel) {
-    console.log('Current groupement ',event);
+    // console.log('Current groupement ',event);
 
     //this.etablissement = event;
     if(event) {
@@ -83,17 +83,17 @@ export class VisiteComponent implements OnInit {
       this.groupementCode = '';
     }
 
-    console.log('change gh select '+ this.groupementCode);
+    // console.log('change gh select '+ this.groupementCode);
 
     
     
   }
 
   currentUf(event: Referentiel) {
-    console.log('Current uf ',event);
+    // console.log('Current uf ',event);
 
     if(event) {
-      console.log('change uf select');
+      // console.log('change uf select');
       this.ufCode = event.code;
     }
   else {
@@ -103,11 +103,11 @@ export class VisiteComponent implements OnInit {
   }
 
   currentMetier(event: Referentiel) {
-    console.log('Current metier ',event);
+    // console.log('Current metier ',event);
 
     
     if(event) {
-      console.log('change metier select');
+      // console.log('change metier select');
       this.metierCode = event.code;
     }
     else {

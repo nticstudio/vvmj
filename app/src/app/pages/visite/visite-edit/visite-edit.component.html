@@ -1,5 +1,3 @@
-<p>visite-edit or view works!</p>
-
 <nb-card [nbSpinner]="loading" nbSpinnerStatus="danger">
   <nb-card-body>
     <form>
@@ -59,29 +57,30 @@
       <input nbInput #date name="date" [nbDatepicker]="ngdate" [(ngModel)]="visite.date">
       <nb-datepicker #ngdate format="dd/MM/yyyy"></nb-datepicker>
     </div>
-  </div>
+  </div>-->
   <div class="form-group row">
     <label for="date" class="label col-sm-3 col-form-label">Créneau horaire</label>
     <div class="col-sm-9">
+
       
-      Début : <input nbInput #hdebut name="hdebut"   [nbDatepicker]="ngdateHD" [ngModel]="visite?.hdebut">
-      <nb-datepicker #ngdateHD format="H:mm"></nb-datepicker>
-      &nbsp; &nbsp;Fin : <input nbInput #hfin name="hfin"   [nbDatepicker]="ngdateHF" [ngModel]="visite?.hfin" >
-      <nb-datepicker #ngdateHF format="HH:mm"></nb-datepicker>
+      <label>Date </label>: {{ visite.date | date: "dd/MM/yyyy" }}<br>
+      <label>Heure début</label> :  {{ visite.hdebut | date: "hh:mm" }}<br>
+      <label>Heure de fin</label> : {{ visite.hfin| date: "hh:mm" }}
+
     </div>
-  </div> -->
+  </div>
 
           <div class="form-group row">
             <label for="hdebut" class="label col-sm-3 col-form-label">Créé par</label>
-            <div class="col-sm-9">
-              {{ created_by_shortname() }}
+            <div class="col-sm-9">              
+              {{ created_by_shortname }}
             </div>
           </div>
 
           <div class="form-group row">
             <label for="hdebut" class="label col-sm-3 col-form-label">Chaperon</label>
             <div class="col-sm-9">
-              {{ chaperon_shortname() }}
+              {{ chaperon_shortname}}
             </div>
           </div>
 
@@ -93,57 +92,12 @@
             </div>
           </div>
 
-          <!-- 
-  <div class="form-group row">
-    <label for="hdebut" class="label col-sm-3 col-form-label">Hfin</label>
-    <div class="col-sm-9">
-      <input type="text" nbInput #Hfin name="Hfin" [ngModel]="visite?.hfin" >
-    </div>
-  </div>
-  
-  
-  
-  
-  <div class="form-group row">
-    <label for="hdebut" class="label col-sm-3 col-form-label">Chaperon</label>
-    <div class="col-sm-9">
-      {{ visite?.chaperon?.firstname}} {{ visite?.chaperon?.lastname}} {{ visite?.chaperon?.email}}
-    </div>
-  </div> -->
+         
 
-          <!-- {{ visite?.gh | json }} -->
-          <!-- <app-groupement-select label="Groupement" [initValue]="groupementCode"></app-groupement-select>
-            <app-etablissement-select [parentCode]="groupementCode"  ></app-etablissement-select>
-            <app-unite-select [parentCode]="etablissementCode"  ></app-unite-select>
-            <app-metier-select label="Métiers" ></app-metier-select>  -->
-          <!-- <div class="form-group row">
-              <label for="inputEmail1" class="label col-sm-3 col-form-label">Email</label>
-              <div class="col-sm-9">
-                <input type="email" nbInput fullWidth id="inputEmail1" placeholder="Email">
-              </div>
-            </div>
-            <div class="form-group row">
-              <label for="inputPassword2" class="label col-sm-3 col-form-label">Password</label>
-              <div class="col-sm-9">
-                <input type="password" nbInput fullWidth id="inputPassword2" placeholder="Password">
-              </div>
-            </div>
-            <div class="form-group row">
-              <label class="col-sm-3 label">Radios</label>
-              <div class="col-sm-9">
-                <nb-radio-group>
-                  <nb-radio>Option 1</nb-radio>
-                  <nb-radio>Option 2</nb-radio>
-                  <nb-radio disabled>Disabled Option</nb-radio>
-                </nb-radio-group>
-              </div>
-            </div>
-            <div class="form-group row">
-              <div class="offset-sm-3 col-sm-9">
-                <button type="submit" nbButton status="primary">Sign in</button>
-              </div>
-            </div>
-          -->
+  
+  
+  
+ 
 
         </div>
       </div>

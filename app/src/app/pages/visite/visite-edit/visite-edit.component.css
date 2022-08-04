@@ -1,3 +1,8 @@
 nb-card {
     width:900px !important;
+    height: 50vh !important;
+}
+
+nb-window {
+    max-width: 900px;
 }
