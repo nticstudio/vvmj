@@ -8,13 +8,13 @@
         <nb-card-body>
           <div class="row">
             <div class="col-6">
-              <h6>Par structure</h6>
+              <h6 class="text-secondary">Par structure</h6>
               <app-groupement-select label="Groupement" [status]="true" (value)="currentGroupement($event)"></app-groupement-select>
               <app-etablissement-select [parentCode]="groupementCode"  [status]="true" (value)="currentEtablissement($event)"></app-etablissement-select>
               <app-unite-select [parentCode]="etablissementCode"  [status]="true" (value)="currentUf($event)"></app-unite-select>
             </div>
             <div class="col-6">
-              <h6>Par Métier</h6>
+              <h6  class="text-secondary">Par Métier</h6>
               <app-metier-select label="Métiers"  [status]="true" (value)="currentMetier($event)"></app-metier-select>
             </div>
           </div>
